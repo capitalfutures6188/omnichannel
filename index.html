@@ -313,33 +313,6 @@
         /* Ensure the mobile dropdown is visible above content */
         #mobile-menu { z-index: 50; }
 
-
-/* 固定 16:9 的 YouTube 外框 */
-.yt-box {
-  position: relative;
-  width: 100%;
-  max-width: 720px;       /* 想更大/更小可調整數值 */
-  border-radius: 1.5rem;  /* = rounded-3xl */
-  box-shadow: 0 25px 50px -12px rgba(0,0,0,.25);
-  overflow: hidden;
-  margin-inline: auto;    /* 置中，對齊右欄可在 md 以上取消 */
-}
-.yt-box::before {
-  content: "";
-  display: block;
-  padding-top: 56.25%;    /* 16:9 高度 */
-}
-.yt-box > iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-@media (min-width: 768px){
-  .yt-box { margin-inline: 0; } /* md 以上與左欄對齊 */
-}
-
 </style>
 </head>
 <body class="text-secondary-gray">
@@ -420,16 +393,19 @@
                         </div>
                     </div>
                     <div class="hidden md:block">
-  <div class="yt-box mx-auto md:mx-0">
-    <iframe
-      src="https://www.youtube.com/embed/yI5Mlw9Nyf4?rel=0&modestbranding=1"
-      title="YouTube video player"
-      loading="lazy"
-      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen>
-    </iframe>
-  </div>
-</div>
+                        <!-- 【HTML 修改】將原始圖片替換為 YouTube 影片的 iframe -->
+                        <!-- 關鍵在於將原始 img 的 class 完整複製到 iframe 上，確保版面不變 -->
+                        <div class="relative w-full h-full">
+                            <iframe 
+                                src="https://www.youtube.com/embed/yI5Mlw9Nyf4" 
+                                title="YouTube video player" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen
+                                class="rounded-3xl shadow-2xl object-cover w-full h-full">
+                            </iframe>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -808,7 +784,7 @@
                                         </ul>
                                     </div>
                                     <div>
-                                        <h4 class="text-lg font-bold text-primary mb-2 border-b-2 border-brand-red pb-1 inline-block">  你會獲得的成長</h4>
+                                        <h4 class="text-lg font-bold text-primary mb-2 border-b-2 border-brand-red pb-1 inline-block">� 你會獲得的成長</h4>
                                         <p class="text-gray-700 mt-3 leading-relaxed">${job.growth}</p>
                                     </div>
                                     <div>
@@ -1125,3 +1101,4 @@
 
 </body>
 </html>
+�
