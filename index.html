@@ -173,26 +173,29 @@
             cursor: not-allowed;
         }
 
-        /* 【核心修改】所有輪播內容的淡入淡出效果 */
+        /* 所有輪播內容的淡入淡出效果 */
         #gallery-image, #training-gallery-image, .media-display-container {
             transition: opacity 0.4s ease-in-out;
         }
 
-        /* 【新增】用於嵌入影片的響應式容器樣式 */
+        /* 【CSS 修改】用於嵌入影片和圖片的響應式容器樣式 */
         .aspect-ratio-16-9 {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 比例 */
             height: 0;
-            overflow: hidden;
-            border-radius: 1rem; /* 圓角 */
-            background-color: #000;
+            background-color: #e0e7ff; /* 淺藍色背景，用於載入時的底色 */
         }
-        .aspect-ratio-16-9 iframe {
+        .aspect-ratio-16-9 iframe,
+        .aspect-ratio-16-9 img {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            border: 0;
+        }
+        .aspect-ratio-16-9 img {
+            object-fit: cover; /* 確保圖片填滿容器且不變形 */
         }
 
 
@@ -410,23 +413,22 @@
                           </a>
                         </div>
                     </div>
-                    <!-- 【HTML 修改】將原本的單張圖片區塊，替換成新的輪播器結構 -->
                     <div class="hidden md:block">
                         <div id="hero-gallery-container" class="relative">
-                            <!-- 媒體（圖片或影片）顯示區 -->
-                            <div id="hero-media-display" class="media-display-container w-full h-auto rounded-3xl shadow-2xl overflow-hidden">
+                            <!-- 【HTML 修改】將媒體顯示區加上 aspect-ratio-16-9 class 來固定長寬比 -->
+                            <div id="hero-media-display" class="media-display-container aspect-ratio-16-9 w-full rounded-3xl shadow-2xl overflow-hidden">
                                 <!-- 內容將由 JavaScript 動態填入 -->
                             </div>
                             <!-- 上一張按鈕 -->
-                            <button id="hero-prev-btn" class="gallery-btn absolute top-1/2 -left-5 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 font-bold p-3 rounded-full shadow-md transition-colors duration-300">
+                            <button id="hero-prev-btn" class="gallery-btn absolute top-1/2 -left-5 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 font-bold p-3 rounded-full shadow-md transition-colors duration-300 z-10">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                             </button>
                             <!-- 下一張按鈕 -->
-                            <button id="hero-next-btn" class="gallery-btn absolute top-1/2 -right-5 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 font-bold p-3 rounded-full shadow-md transition-colors duration-300">
+                            <button id="hero-next-btn" class="gallery-btn absolute top-1/2 -right-5 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 font-bold p-3 rounded-full shadow-md transition-colors duration-300 z-10">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             </button>
                              <!-- 導覽點容器 -->
-                            <div id="hero-gallery-dots" class="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                            <div id="hero-gallery-dots" class="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
                                 <!-- 導覽點將由 JavaScript 動態產生 -->
                             </div>
                         </div>
@@ -806,15 +808,14 @@
                         heroMediaDisplay.style.opacity = 0;
                     }
                     setTimeout(() => {
+                        // 【JS 修改】簡化 innerHTML 的產生方式
                         if (currentMedia.type === 'image') {
                             heroMediaDisplay.innerHTML = `
-                                <img decoding="async" loading="lazy" src="${currentMedia.src}" alt="${currentMedia.alt}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x700/e0e7ff/1E3A8A?text=媒體載入失敗';">
+                                <img decoding="async" loading="lazy" src="${currentMedia.src}" alt="${currentMedia.alt}" onerror="this.onerror=null;this.src='https://placehold.co/600x700/e0e7ff/1E3A8A?text=媒體載入失敗';">
                             `;
                         } else if (currentMedia.type === 'video') {
                             heroMediaDisplay.innerHTML = `
-                                <div class="aspect-ratio-16-9">
-                                    <iframe src="${currentMedia.src}" title="${currentMedia.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </div>
+                                <iframe src="${currentMedia.src}" title="${currentMedia.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             `;
                         }
                         heroMediaDisplay.style.opacity = 1;
@@ -1202,3 +1203,5 @@
 
 </body>
 </html>
+" in the Canvas.
+I want to change the border-radius of the youtube video to be rounded-3xl instead of rounded-
