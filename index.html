@@ -287,7 +287,7 @@
         <nav class="container mx-auto px-6 h-20 flex justify-between items-center"> <!-- 導覽列：容器、水平置中、內邊距、固定高度、flex佈局 -->
             <!-- Logo -->
             <a href="#home" class="flex-shrink-0 flex items-center gap-3"> <!-- Logo 連結，點擊回到頂部 -->
-                <img src="https://placehold.co/150x40/1E3A8A/ffffff?text=群益期貨" alt="群益期貨 Logo" class="h-10"> <!-- Logo 圖片 -->
+                <img src="images/群益logo.png" alt="群益期貨 Logo" class="h-10" onerror="this.onerror=null;this.src='https://placehold.co/150x40/1E3A8A/ffffff?text=群益期貨';"> <!-- Logo 圖片 -->
                 <span class="text-primary font-semibold text-sm hidden md:inline border-l-2 pl-3 border-gray-300">通路事業部｜人才招募</span> <!-- Logo 文字，在中螢幕以上顯示 -->
             </a>
             
@@ -435,14 +435,14 @@
                         </div>
                     </div>
                     <div class="order-1 md:order-2"> <!-- 圖片 -->
-                        <img decoding="async" loading="lazy" src="https://placehold.co/600x450/1E3A8A/ffffff?text=公司架構" alt="群益期貨公司架構圖" class="rounded-2xl shadow-lg w-full h-full object-contain bg-white p-4">
+                        <img decoding="async" loading="lazy" src="images/群益架構.png" alt="群益期貨公司架構圖" class="rounded-2xl shadow-lg w-full h-full object-contain bg-white p-4" onerror="this.onerror=null;this.src='https://placehold.co/600x450/1E3A8A/ffffff?text=公司架構';">
                     </div>
                 </div>
 
                 <!-- 部門願景區塊 -->
                 <div class="grid md:grid-cols-2 gap-12 items-center fade-in-section">
                     <div> <!-- 圖片 -->
-                        <img decoding="async" loading="lazy" src="https://placehold.co/600x450/ffedd5/1E3A8A?text=部門願景" alt="部門願景示意圖" class="rounded-2xl shadow-lg w-full h-full object-cover">
+                        <img decoding="async" loading="lazy" src="images/通路事業部.jpg" alt="部門願景示意圖" class="rounded-2xl shadow-lg w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x450/ffedd5/1E3A8A?text=部門願景';">
                     </div>
                     <div> <!-- 文字內容 -->
                          <div class="bg-white p-10 rounded-2xl shadow-lg h-full">
@@ -729,13 +729,13 @@
             { question: '有績效壓力嗎？制度怎麼算？', answer: '我們是目標導向的團隊，設有清晰的KPI與獎勵制度，但更強調團隊目標的達成。我們鼓勵健康的競爭，但反對惡性搶單。詳細的獎金與激勵制度會在面談時清楚說明，我們相信透明的制度是團隊信任的基礎。' }
         ];
         // 團隊生活照片路徑
-        const teamPhotos = [ 'https://placehold.co/900x600/aabbcc/ffffff?text=團隊生活1', 'https://placehold.co/900x600/ccbbaa/ffffff?text=團隊生活2', 'https://placehold.co/900x600/aaccbb/ffffff?text=團隊生活3' ];
+        const teamPhotos = [ 'images/照片7.jpg', 'images/照片6.jpg', 'images/照片5.jpg', 'images/照片4.jpg', 'images/照片3.jpg', 'images/照片2.jpg', 'images/照片1.jpg' ];
         // 培訓照片及說明文字
         const trainingPhotos = [
-            {src:'https://placehold.co/900x600/ddeeff/1E3A8A?text=教育訓練', caption:'教育訓練：完整新人訓練與專業進修課程'},
-            {src:'https://placehold.co/900x600/eeddff/1E3A8A?text=內外業務轉換', caption:'內外業務轉換：內勤 × 外勤協作推進業務'},
-            {src:'https://placehold.co/900x600/ffeedd/1E3A8A?text=活化客戶', caption:'活化客戶：活動設計、獎勵機制提升轉化'},
-            {src:'https://placehold.co/900x600/eeffdd/1E3A8A?text=投資講座', caption:'投資講座：專家講座與市場觀點分享'}
+            {src:'images/教育訓練.jpg', caption:'教育訓練：完整新人訓練與專業進修課程'},
+            {src:'images/內外業務轉換.jpg', caption:'內外業務轉換：內勤 × 外勤協作推進業務'},
+            {src:'images/活化客戶.jpg', caption:'活化客戶：活動設計、獎勵機制提升轉化'},
+            {src:'images/投資講座.png', caption:'投資講座：專家講座與市場觀點分享'}
         ];
 
         // --- 功能邏輯 ---
@@ -896,6 +896,10 @@
 
                 function updateGallery() { // 更新圖片庫顯示的函式
                     galleryImage.src = teamPhotos[currentPhotoIndex]; // 更新圖片來源
+                    galleryImage.onerror = function() { // 增加錯誤處理
+                        this.onerror=null;
+                        this.src=`https://placehold.co/900x600/f1f5f9/334155?text=圖片載入失敗`;
+                    };
                     prevBtn.disabled = currentPhotoIndex === 0; // 如果是第一張，禁用上一張按鈕
                     nextBtn.disabled = currentPhotoIndex === teamPhotos.length - 1; // 如果是最後一張，禁用下一張按鈕
                     
@@ -944,6 +948,10 @@
 
                 function updateTrainingGallery() {
                     trainingGalleryImage.src = trainingPhotos[currentTrainingPhotoIndex].src;
+                    trainingGalleryImage.onerror = function() { // 增加錯誤處理
+                        this.onerror=null;
+                        this.src=`https://placehold.co/900x600/f1f5f9/334155?text=圖片載入失敗`;
+                    };
                     if (trainingCaptionEl) trainingCaptionEl.textContent = trainingPhotos[currentTrainingPhotoIndex].caption;
                     trainingPrevBtn.disabled = currentTrainingPhotoIndex === 0;
                     trainingNextBtn.disabled = currentTrainingPhotoIndex === trainingPhotos.length - 1;
