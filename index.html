@@ -177,6 +177,13 @@
         #gallery-image, #training-gallery-image, #hero-media-display {
             transition: opacity 0.4s ease-in-out;
         }
+        
+        /* 【CSS 新增】確保輪播器內的 iframe 也是絕對定位，以填滿容器 */
+        #hero-media-display iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
 
         /* ---- Global heading spacing fix ---- */
         h1, h2, h3, h4 {
@@ -393,11 +400,11 @@
                         </div>
                     </div>
                     <div class="hidden md:block">
-                        <!-- 【HTML 修改】將輪播器放在和原始圖片相同的 `relative w-full h-full` 容器中，以確保位置和大小正確 -->
+                        <!-- 【HTML 修改】將輪播器放在和原始圖片相同的 `relative w-full h-full` 容器中 -->
                         <div id="hero-gallery-container" class="relative w-full h-full">
-                            <!-- 媒體（圖片或影片）顯示區 -->
+                            <!-- 媒體（圖片或影片）顯示區，這個 div 會被 JS 填入內容 -->
                             <div id="hero-media-display" class="w-full h-full">
-                                <!-- 內容將由 JavaScript 動態填入 -->
+                                <!-- 初始內容會被 JS 覆蓋 -->
                             </div>
                             <!-- 上一張按鈕 -->
                             <button id="hero-prev-btn" class="gallery-btn absolute top-1/2 -left-5 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 font-bold p-3 rounded-full shadow-md transition-colors duration-300 z-10">
@@ -528,7 +535,7 @@
             <div class="container mx-auto px-6">
                 <div class="fade-in-section">
                     <h2 class="section-title">理想福利與團隊生活</h2>
-                    <p class="section-subtitle">我們照顧你的身心，投資你的成長，更相信最好的工作氛圍來自於互信的夥伴關係。</p>
+                    <p class="section-subtitle">我們照顧你的身心，投資你的成長，更相信最好的工作風氣來自於互信的夥伴關係。</p>
                 </div>
                 <div class="grid lg:grid-cols-2 gap-12 items-center fade-in-section">
                     <div class="grid md:grid-cols-2 gap-8">
@@ -780,6 +787,12 @@
             const heroNextBtn = document.getElementById('hero-next-btn');
             const heroDotsContainer = document.getElementById('hero-gallery-dots');
             if (heroMediaDisplay && heroPrevBtn && heroNextBtn && heroDotsContainer) {
+                // 移除原始靜態圖片，因為將由 JS 動態生成
+                const staticHeroImage = document.getElementById('hero-image');
+                if(staticHeroImage) {
+                    staticHeroImage.remove();
+                }
+
                 let currentMediaIndex = 0;
 
                 function updateHeroGallery(isInitial = false) {
