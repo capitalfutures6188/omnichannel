@@ -1,43 +1,27 @@
-<!DOCTYPE html> <!-- 定義這是一個 HTML5 文件 -->
-<html lang="zh-Hant" class="scroll-smooth"> <!-- 根元素，設定語言為繁體中文，並啟用平滑滾動效果 -->
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
 <head>
-    <!-- ============================================= -->
-    <!-- ======= Meta, 標題 & CSS/字體連結 ======== -->
-    <!-- ============================================= -->
-    <meta charset="UTF-8"> <!-- 設定文件編碼為 UTF-8，以正確顯示中文字元 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 設定視口，讓網頁在不同裝置上能正確縮放 -->
-    <meta name="description" content="群益期貨通路事業部人才招募：熱門職缺、福利與生活、職涯藍圖、應徵流程與常見問題，一站式了解並立即投遞。"> <!-- 網頁描述，用於 SEO -->
-    <title>群益期貨 通路事業部｜人才招募</title> <!-- 網頁標題，會顯示在瀏覽器分頁上 -->
-
-    <!-- 外部資源連結 -->
-    <script src="https://cdn.tailwindcss.com"></script> <!-- 引入 Tailwind CSS 的 JavaScript 檔案 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- 預先連接到 Google Fonts 伺服器 -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- 預先連接到 Google Fonts 的靜態資源伺服器 -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet"> <!-- 引入 Noto Sans TC 字體，包含不同字重 -->
-    
-    <!-- ============================================= -->
-    <!-- ================ 自訂樣式 =============== -->
-    <!-- ============================================= -->
+<link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+<meta name="description" content="群益期貨通路事業部人才招募：熱門職缺、福利與生活、職涯藍圖、應徵流程與常見問題，一站式了解並立即投遞。">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>群益期貨 通路事業部｜人才招募</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        /* --- 基本設定 --- */
-        body { /* 設定 body 元素的全域樣式 */
-            font-family: 'Noto Sans TC', sans-serif; /* 設定預設字體 */
-            background-color: #f8fafc; /* 設定頁面背景顏色 */
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f8fafc;
         }
-        
-        html { /* 設定 html 元素的樣式 */
-            scroll-behavior: smooth; /* 啟用錨點連結之間的平滑滾動 */
+        /* Color Palette */
+        :root {
+            --brand-red: #B91C1C; 
+            --primary-blue: #1E3A8A;
+            --secondary-gray: #334155;
+            --light-gray-bg: #f1f5f9;
         }
-
-        /* --- 色彩定義 --- */
-        :root { /* 定義全站使用的 CSS 變數 */
-            --brand-red: #B91C1C;      /* 品牌紅色 */
-            --primary-blue: #1E3A8A;   /* 主要藍色 */
-            --secondary-gray: #334155; /* 次要灰色 */
-            --light-gray-bg: #f1f5f9;  /* 淺灰色背景 */
-        }
-        
-        /* 定義使用色彩變數的輔助 class */
         .bg-primary { background-color: var(--primary-blue); }
         .text-primary { color: var(--primary-blue); }
         .bg-brand-red { background-color: var(--brand-red); }
@@ -45,285 +29,295 @@
         .border-brand-red { border-color: var(--brand-red); }
         .bg-light-gray { background-color: var(--light-gray-bg); }
 
-        /* --- 通用元件樣式 --- */
-        
-        /* 區塊主標題樣式 */
-        .section-title {
-            color: var(--primary-blue); /* 設定文字顏色 */
-            font-weight: 900; /* 設定字體粗細為最粗 */
-            text-align: center; /* 文字置中 */
-            margin-bottom: 1rem; /* 設定下邊距 */
-            font-size: 2.25rem;  /* 設定字體大小 */
-            line-height: 1.2; /* 設定行高 */
-        }
-        @media (min-width: 768px) { /* 在中等螢幕尺寸以上時 */
-            .section-title {
-                font-size: 3rem;   /* 增加字體大小 */
-            }
+        html {
+            scroll-behavior: smooth;
         }
         
-        /* 區塊副標題樣式 */
-        .section-subtitle {
-            color: var(--secondary-gray); /* 設定文字顏色 */
-            text-align: center; /* 文字置中 */
-            margin-bottom: 3rem; /* 設定下邊距 */
-            max-width: 48rem;    /* 設定最大寬度 */
-            margin-left: auto; /* 自動左邊距，用於水平置中 */
-            margin-right: auto; /* 自動右邊距，用於水平置中 */
-            line-height: 1.75;   /* 設定行高 */
-        }
-        @media (min-width: 768px) { /* 在中等螢幕尺寸以上時 */
-            .section-subtitle {
-                margin-bottom: 5rem; /* 增加下邊距 */
-            }
-        }
+        .section-title {color: var(--primary-blue);
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 1rem; /* ~mb-4 */
+  font-size: 2.25rem;  /* ~text-4xl */
+  line-height: 1.2;
+}
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 3rem;   /* ~md:text-5xl */
+  }
+}
+        .section-subtitle {color: var(--secondary-gray);
+  text-align: center;
+  margin-bottom: 3rem; /* ~mb-12 */
+  max-width: 48rem;    /* ~max-w-3xl */
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.75;   /* ~leading-relaxed */
+}
+@media (min-width: 768px) {
+  .section-subtitle {
+    margin-bottom: 5rem; /* ~md:mb-20 */
+  }
+}
         
-        /* 行動呼籲按鈕 (CTA) 樣式 */
-        .cta-button {
-            display: inline-block; /* 讓元素表現像行內元素但可設定宽高 */
-            padding: 0.75rem 2rem; /* 設定內邊距 */
-            font-weight: 700; /* 設定字體粗細 */
-            border-radius: 0.5rem; /* 設定圓角 */
-            font-size: 1rem; /* 設定字體大小 */
-            transition: all 0.3s ease; /* 設定所有屬性變換的過渡效果 */
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* 設定陰影 */
-        }
-        .cta-button:focus { /* 按鈕取得焦點時的樣式 */
-            outline: 2px solid currentColor; /* 設定外框線 */
-            outline-offset: 2px; /* 設定外框線與元素的距離 */
-        }
-        
-        /* 主要按鈕樣式 (紅色背景) */
-        .cta-button-primary {
-            background-color: var(--brand-red); /* 設定背景顏色 */
-            color: #fff; /* 設定文字顏色 */
-        }
-        .cta-button-primary:hover { /* 滑鼠懸停時的樣式 */
-            background-color: #991B1B; /* 加深背景顏色 */
-        }
-        .cta-button-primary:focus { /* 取得焦點時的樣式 */
-            outline-color: var(--brand-red); /* 設定外框線顏色 */
-        }
-        
-        /* 次要按鈕樣式 (白色背景紅色邊框) */
-        .cta-button-secondary {
-            background-color: #fff; /* 設定背景顏色 */
-            color: var(--brand-red); /* 設定文字顏色 */
-            border: 2px solid var(--brand-red); /* 設定邊框 */
-        }
-        .cta-button-secondary:hover { /* 滑鼠懸停時的樣式 */
-            background-color: #FEF2F2; /* 設定淺紅色背景 */
-        }
-        .cta-button-secondary:focus { /* 取得焦點時的樣式 */
-            outline-color: var(--brand-red); /* 設定外框線顏色 */
-        }
+        /* Call-to-Action Buttons - Updated Style */
+        .cta-button {display: inline-block;
+  padding: 0.75rem 2rem; /* px-8 py-3 */
+  font-weight: 700;
+  border-radius: 0.5rem; /* rounded-lg */
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+}
+.cta-button:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+        .cta-button-primary {background-color: var(--brand-red);
+  color: #fff;
+}
+.cta-button-primary:hover {
+  background-color: #991B1B; /* hover:bg-red-700 */
+}
+.cta-button-primary:focus {
+  outline-color: var(--brand-red);
+}
+        .cta-button-secondary {background-color: #fff;
+  color: var(--brand-red);
+  border: 2px solid var(--brand-red);
+}
+.cta-button-secondary:hover {
+  background-color: #FEF2F2; /* hover:bg-red-50 */
+}
+.cta-button-secondary:focus {
+  outline-color: var(--brand-red);
+}
 
-        /* 卡片樣式 */
-        .card {
-            background-color: #fff; /* 設定背景顏色 */
-            padding: 2rem; /* 設定內邊距 */
-            border-radius: 1rem; /* 設定圓角 */
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* 設定陰影 */
-            transition: all 0.3s ease; /* 設定所有屬性變換的過渡效果 */
-            transform: translateY(0); /* 初始 Y 軸位置 */
-        }
-        .card:hover { /* 滑鼠懸停在卡片上時 */
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); /* 加深陰影 */
-            transform: translateY(-0.5rem); /* 向上移動 */
-        }
+        .card {background-color: #fff;
+  padding: 2rem; /* p-8 */
+  border-radius: 1rem; /* rounded-2xl */
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+.card:hover {
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+  transform: translateY(-0.5rem);
+}
 
-        /* --- 特定區塊樣式 --- */
-
-        /* 黏性頁首樣式 */
         header.sticky {
-            backdrop-filter: blur(10px); /* 背景模糊效果 */
-            -webkit-backdrop-filter: blur(10px); /* 兼容 Safari 的背景模糊 */
-            background-color: rgba(255, 255, 255, 0.85); /* 半透明背景 */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.85);
         }
 
-        /* 常見問題 (FAQ) 折疊箭頭 */
+        /* FAQ Accordion Arrow */
         .accordion-button::after {
-            content: '▼'; /* 插入箭頭內容 */
-            float: right; /* 靠右浮動 */
-            transform: scale(0.8); /* 縮小尺寸 */
-            transition: transform 0.3s ease-in-out; /* 設定旋轉的過渡效果 */
-            color: var(--primary-blue); /* 設定顏色 */
+            content: '▼';
+            float: right;
+            transform: scale(0.8);
+            transition: transform 0.3s ease-in-out;
+            color: var(--primary-blue);
         }
-        .accordion-button.open::after { /* 當按鈕有 'open' class 時 */
-            transform: scale(0.8) rotate(180deg); /* 旋轉箭頭 */
+        .accordion-button.open::after {
+            transform: scale(0.8) rotate(180deg);
         }
 
-        /* 滾動淡入動畫 */
         .fade-in-section {
-            opacity: 0; /* 初始透明度為 0 */
-            transform: translateY(20px); /* 初始位置向下偏移 20px */
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* 設定過渡效果 */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        .fade-in-section.is-visible { /* 當元素可見時 */
-            opacity: 1; /* 完全不透明 */
-            transform: translateY(0); /* 回到原始位置 */
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        
-        /* 圖片庫按鈕禁用樣式 */
+        /* Gallery Button Style */
         .gallery-btn:disabled {
-            opacity: 0.3; /* 降低透明度 */
-            cursor: not-allowed; /* 設定鼠標為禁止符號 */
+            opacity: 0.3;
+            cursor: not-allowed;
         }
 
-        /* 全域標題間距修正 */
-        h1, h2, h3, h4 {
-            margin-bottom: 0.5rem; /* 設定標題下邊距 */
-            line-height: 1.25; /* 設定行高 */
-        }
-        h1 + p, h2 + p, h3 + p, h4 + p { margin-top: 0.5rem; } /* 確保標題後的第一個段落有足夠空間 */
-        .card h3, .card h4 { margin-bottom: 0.5rem; } /* 卡片內標題的下邊距 */
-        .job-header h3 { margin-bottom: 0.25rem; } /* 職缺標題的下邊距 */
+/* ---- Global heading spacing fix ---- */
+h1, h2, h3, h4 {
+  margin-bottom: 0.5rem;
+  line-height: 1.25;
+}
+/* ensure first paragraph after a heading has breathing room */
+h1 + p, h2 + p, h3 + p, h4 + p { margin-top: 0.5rem; }
+.card h3, .card h4 { margin-bottom: 0.5rem; }
+.job-header h3 { margin-bottom: 0.25rem; }
 
-        /* 指標區塊樣式強化 */
-        .highlights-section { position: relative; } /* 設定相對定位 */
-        .bg-dots-soft { /* 柔和的點狀背景 */
-            background-image: radial-gradient(rgba(30,58,138,.08) 1.6px, transparent 1.6px);
-            background-size: 14px 14px;
-        }
-        .metric-eyebrow{ /* 指標區塊的小標題 */
-            display:inline-block;
-            font-size:.875rem;
-            color: var(--secondary-gray);
-            letter-spacing:.08em;
-            margin-bottom:.5rem;
-            position:relative;
-            padding:0 .75rem;
-        }
-        .metric-eyebrow:before, .metric-eyebrow:after{ /* 小標題兩側的裝飾線 */
-            content:"";
-            position:absolute;
-            top:50%;
-            width:48px;
-            height:2px;
-            background: linear-gradient(90deg, transparent, rgba(30,58,138,.35), transparent);
-            transform:translateY(-50%);
-        }
-        .metric-eyebrow:before{ left:-48px; }
-        .metric-eyebrow:after{ right:-48px; }
+/* ===== Metric Section Enhancements ===== */
+.highlights-section { position: relative; }
+.bg-dots-soft {
+  background-image: radial-gradient(rgba(30,58,138,.08) 1.6px, transparent 1.6px);
+  background-size: 14px 14px;
+}
+.metric-eyebrow{
+  display:inline-block;
+  font-size:.875rem;
+  color: var(--secondary-gray);
+  letter-spacing:.08em;
+  margin-bottom:.5rem;
+  position:relative;
+  padding:0 .75rem;
+}
+.metric-eyebrow:before, .metric-eyebrow:after{
+  content:"";
+  position:absolute;
+  top:50%;
+  width:48px;
+  height:2px;
+  background: linear-gradient(90deg, transparent, rgba(30,58,138,.35), transparent);
+  transform:translateY(-50%);
+}
+.metric-eyebrow:before{ left:-48px; }
+.metric-eyebrow:after{ right:-48px; }
 
-        .metric-card{ /* 指標卡片 */
-            position:relative;
-            overflow:hidden;
-            border:1px solid #e5e7eb;
-        }
-        .metric-card:before{ /* 卡片頂部的裝飾線 */
-            content:"";
-            position:absolute;
-            inset:0 0 auto 0;
-            height:6px;
-            background: linear-gradient(90deg, #ef4444, #b91c1c);
-        }
-        .metric-value{ font-weight:900; letter-spacing:.02em; } /* 指標數值 */
-        .metric-label{ display:block; font-weight:800; } /* 指標標籤 */
-        .metric-note{ opacity:.9; } /* 指標備註 */
+.metric-card{
+  position:relative;
+  overflow:hidden;
+  border:1px solid #e5e7eb;
+}
+.metric-card:before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto 0;
+  height:6px;
+  background: linear-gradient(90deg, #ef4444, #b91c1c);
+}
+.metric-value{ font-weight:900; letter-spacing:.02em; }
+.metric-label{ display:block; font-weight:800; }
+.metric-note{ opacity:.9; }
 
-        /* 特色卡片樣式 */
-        .seg-card{
-            position:relative;
-            border:1px solid #e5e7eb;
-        }
-        .seg-card:before{ /* 卡片頂部的裝飾線 */
-            content:"";
-            position:absolute;
-            left:0; top:0; right:0;
-            height:4px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--brand-red));
-            border-top-left-radius: 1rem;
-            border-top-right-radius: 1rem;
-        }
+/* ===== Segmented Feature Cards ===== */
+.seg-card{
+  position:relative;
+  border:1px solid #e5e7eb;
+}
+.seg-card:before{
+  content:"";
+  position:absolute;
+  left:0; top:0; right:0;
+  height:4px;
+  background: linear-gradient(90deg, var(--primary-blue), var(--brand-red));
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
 
-        /* 培訓圖片庫的說明文字覆蓋樣式 */
-        #training-gallery-container { position: relative; } /* 設定相對定位，作為子元素定位的基準 */
-        #training-caption.training-caption {
-            position: absolute; /* 絕對定位 */
-            left: 0; right: 0; bottom: 0; /* 定位在容器底部 */
-            margin: 0; /* 清除外邊距 */
-            padding: 12px 16px; /* 設定內邊距 */
-            color: #fff; /* 文字顏色 */
-            text-align: center; /* 文字置中 */
-            font-weight: 700; /* 字體粗細 */
-            line-height: 1.5; /* 行高 */
-            background: linear-gradient(180deg, rgba(2,6,23,0) 0%, rgba(2,6,23,0.55) 45%, rgba(2,6,23,0.85) 100%); /* 漸層背景，讓文字更清晰 */
-            backdrop-filter: saturate(120%) blur(0.5px); /* 背景濾鏡效果 */
-            z-index: 3; /* 堆疊順序 */
-            border-bottom-left-radius: 0.5rem; /* 設定圓角 */
-            border-bottom-right-radius: 0.5rem;
-        }
-        #training-gallery-dots { bottom: 56px; z-index: 4; } /* 導航點的位置 */
-        .gallery-btn { z-index: 5; } /* 確保導航按鈕在最上層 */
+/* ==== Training carousel spacing fix ==== */
+.training-carousel { 
+  position: relative; 
+  margin-bottom: 1.25rem; /* create space from caption */
+}
+#training-caption {
+  margin-top: 1.25rem; /* more breathing room below the carousel */
+  line-height: 1.6;
+}
+/* Ensure nav circles don't crowd the caption */
+.training-carousel .nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+.training-carousel .nav-btn.left { left: 0.5rem; }
+.training-carousel .nav-btn.right { right: 0.5rem; }
 
-        /* 簡易導覽列下拉選單 */
-        header details[open] > div { display:block; } /* 當 details 元素展開時，顯示其子 div */
-        header details > div { display:none; } /* 預設隱藏 */
-        @media (max-width: 768px) { /* 在手機版上 */
-            header details > div { position:static; border:none; box-shadow:none; } /* 移除絕對定位和樣式 */
-        }
 
-        /* 確保手機版下拉選單在內容之上 */
-        #mobile-menu { z-index: 50; }
+/* ==== Training gallery caption overlay ==== */
+#training-gallery-container { position: relative; }
+#training-caption.training-caption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  margin: 0;
+  padding: 12px 16px;
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+  line-height: 1.5;
+  background: linear-gradient(180deg, rgba(2,6,23,0) 0%, rgba(2,6,23,0.55) 45%, rgba(2,6,23,0.85) 100%);
+  backdrop-filter: saturate(120%) blur(0.5px);
+  z-index: 3;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+#training-gallery-dots { bottom: 56px; z-index: 4; }
+/* Ensure nav buttons sit above image but below caption gradient */
+.gallery-btn { z-index: 5; }
 
-        /* 職缺彈出視窗樣式 */
-        #job-modal-overlay.active, /* 當背景遮罩啟用時 */
-        #job-modal.active { /* 當彈出視窗啟用時 */
-            opacity: 1; /* 完全不透明 */
-            pointer-events: auto; /* 允許滑鼠事件 */
-        }
-        #job-modal.active {
-            transform: translate(-50%, -50%) scale(1); /* 移動到中心並恢復正常大小 */
-        }
-    </style>
+
+/* --- Simple nav dropdown --- */
+header details[open] > div { display:block; }
+header details > div { display:none; }
+@media (max-width: 768px) {
+  header details > div { position:static; border:none; box-shadow:none; }
+}
+
+
+/* --- Readability helpers --- */
+.container-narrow { max-width: 72rem; margin-inline:auto; padding-inline: 1rem; }
+.lede { font-size: 1.0625rem; line-height: 1.9; color: var(--secondary-gray); }
+hr.section-divider { border: 0; height: 1px; width: min(92%, 72rem); margin: 2.5rem auto; background: linear-gradient(90deg, transparent, rgba(2,6,23,.14), transparent); }
+
+
+/* --- Ensure images never overflow on small screens --- */
+img { max-width: 100%; height: auto; }
+
+
+/* Prevent hidden anchors from affecting initial scroll */
+#team.sr-only, #units.sr-only { position: absolute; top: 0; left: 0; width: 0; height: 0; overflow: hidden; }
+
+
+/* Ensure the mobile dropdown is visible above content */
+#mobile-menu { z-index: 50; }
+
+/* --- NEW: Job Modal Styles --- */
+#job-modal-overlay.active,
+#job-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+#job-modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+</style>
 </head>
-<body class="text-secondary-gray"> <!-- 設定 body 的預設文字顏色 -->
+<body class="text-secondary-gray">
 
-    <!-- ============================================= -->
-    <!-- ================ 頁首 (Header) ================ -->
-    <!-- ============================================= -->
-    <header class="bg-white/80 sticky top-0 z-40 shadow-md border-b border-gray-200 transition-all duration-300"> <!-- 頁首：半透明背景、黏在頂部、高層級、有陰影和底線 -->
-        <nav class="container mx-auto px-6 h-20 flex justify-between items-center"> <!-- 導覽列：容器、水平置中、內邊距、固定高度、flex佈局 -->
-            <!-- Logo -->
-            <a href="#home" class="flex-shrink-0 flex items-center gap-3"> <!-- Logo 連結，點擊回到頂部 -->
-                <img src="images/群益logo.png" alt="群益期貨 Logo" class="h-10" onerror="this.onerror=null;this.src='https://placehold.co/150x40/1E3A8A/ffffff?text=群益期貨';"> <!-- Logo 圖片 -->
-                <span class="text-primary font-semibold text-sm hidden md:inline border-l-2 pl-3 border-gray-300">通路事業部｜人才招募</span> <!-- Logo 文字，在中螢幕以上顯示 -->
+    <!-- Header -->
+    <header class="bg-white/80 sticky top-0 z-40 shadow-md border-b border-gray-200 transition-all duration-300">
+        <nav class="container mx-auto px-6 h-20 flex justify-between items-center">
+            <!-- Logo with Text Updated -->
+            <a href="#home" class="flex-shrink-0 flex items-center gap-3">
+                <img src="images/群益logo.png" alt="群益期貨 Logo" class="h-10" onerror="this.onerror=null;this.src='https://placehold.co/150x40/1E3A8A/ffffff?text=群益期貨';">
+                <span class="text-primary font-semibold text-sm hidden md:inline border-l-2 pl-3 border-gray-300">通路事業部｜人才招募</span>
             </a>
-            
-            <!-- 電腦版導覽連結 -->
-            <div class="hidden md:flex items-center space-x-2"> <!-- 只在電腦版顯示 (md以上) -->
-                <a href="#about-us" class="px-4 py-2 text-sm font-semibold text-primary rounded-lg hover:text-brand-red transition-colors">關於我們</a>
-                <a href="#openings" class="px-4 py-2 text-sm font-semibold text-primary rounded-lg hover:text-brand-red transition-colors">熱門職缺</a>
-                <a href="#benefits-life" class="px-4 py-2 text-sm font-semibold text-primary rounded-lg hover:text-brand-red transition-colors">福利與生活</a>
-                <a href="#career-path" class="px-4 py-2 text-sm font-semibold text-primary rounded-lg hover:text-brand-red transition-colors">職涯藍圖</a>
-                <a href="#apply" class="px-4 py-2 text-sm font-semibold text-primary rounded-lg hover:text-brand-red transition-colors">應徵流程</a>
-                <a href="#faq" class="px-4 py-2 text-sm font-semibold text-primary rounded-lg hover:text-brand-red transition-colors">常見問題</a>
-                <div class="relative group"> <!-- 下拉選單容器 -->
-                  <details class="cursor-pointer"> <!-- 使用 details 元素製作簡易下拉選單 -->
-                    <summary class="px-4 py-2 text-sm font-semibold text-primary rounded-lg hover:text-brand-red transition-colors list-none">更多</summary> <!-- 下拉選單觸發按鈕 -->
-                    <div class="absolute right-0 mt-2 w-44 bg-white border border-gray-200 rounded-xl shadow-lg py-2 z-30"> <!-- 下拉選單內容 -->
-                      <a href="#highlights" class="block px-4 py-2 text-sm hover:bg-gray-50">指標亮點</a>
-                      <a href="#units" class="block px-4 py-2 text-sm hover:bg-gray-50">四大處室</a>
-                      <a href="#team" class="block px-4 py-2 text-sm hover:bg-gray-50">團隊生活</a>
-                    </div>
-                  </details>
-                </div>
-            </div>
-
-            <!-- 立即應徵按鈕 (電腦版) -->
+            <div class="hidden md:flex items-center space-x-2"><a href="#about-us" class="px-4 py-2 text-sm font-semibold text-primary rounded-lg hover:text-brand-red transition-colors">關於我們</a>
+<a href="#openings" class="px-4 py-2 text-sm font-semibold text-primary rounded-lg hover:text-brand-red transition-colors">熱門職缺</a>
+<a href="#benefits-life" class="px-4 py-2 text-sm font-semibold text-primary rounded-lg hover:text-brand-red transition-colors">福利與生活</a>
+<a href="#career-path" class="px-4 py-2 text-sm font-semibold text-primary rounded-lg hover:text-brand-red transition-colors">職涯藍圖</a>
+<a href="#apply" class="px-4 py-2 text-sm font-semibold text-primary rounded-lg hover:text-brand-red transition-colors">應徵流程</a>
+<a href="#faq" class="px-4 py-2 text-sm font-semibold text-primary rounded-lg hover:text-brand-red transition-colors">常見問題</a>
+<div class="relative group">
+  <details class="cursor-pointer">
+    <summary class="px-4 py-2 text-sm font-semibold text-primary rounded-lg hover:text-brand-red transition-colors list-none">更多</summary>
+    <div class="absolute right-0 mt-2 w-44 bg-white border border-gray-200 rounded-xl shadow-lg py-2 z-30">
+      <a href="#highlights" class="block px-4 py-2 text-sm hover:bg-gray-50">指標亮點</a>
+      <a href="#units" class="block px-4 py-2 text-sm hover:bg-gray-50">四大處室</a>
+      <a href="#team" class="block px-4 py-2 text-sm hover:bg-gray-50">團隊生活</a>
+    </div>
+  </details>
+</div></div>
             <a href="#openings" class="hidden md:inline-block ml-4 cta-button-primary px-6 py-2 text-sm">立即應徵</a>
-            
-            <!-- 手機版漢堡選單按鈕 -->
-            <div class="md:hidden"> <!-- 只在手機版顯示 (md以下) -->
-                <button id="mobile-menu-button" class="text-primary focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-primary focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" onclick="(function(btn){var m=document.getElementById('mobile-menu');if(!m)return;var h=m.classList.contains('hidden');m.classList.toggle('hidden');btn.setAttribute('aria-expanded', String(h));})(this)">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </nav>
-        
-        <!-- 手機版下拉選單 -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t"> <!-- 預設隱藏，只在手機版顯示 -->
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
             <a href="#about-us" class="block text-center py-3 text-primary font-semibold hover:bg-gray-100">關於我們</a>
             <a href="#openings" class="block text-center py-3 text-primary font-semibold hover:bg-gray-100">熱門職缺</a>
             <a href="#benefits-life" class="block text-center py-3 text-primary font-semibold hover:bg-gray-100">福利與生活</a>
@@ -333,65 +327,67 @@
             <a href="#openings" class="block text-center py-4 bg-brand-red text-white font-bold">立即應徵</a>
         </div>
     </header>
-    <!-- ============================================= -->
-    <!-- ============= End of 頁首 (Header) ============ -->
-    <!-- ============================================= -->
 
-    <main> <!-- 網頁主要內容區塊 -->
-        <!-- ============================================= -->
-        <!-- ========= 1. 英雄區塊 (Hero Section) ========= -->
-        <!-- ============================================= -->
-        <section id="home" class="bg-white"> <!-- 區塊 ID，用於錨點連結 -->
-            <div class="container mx-auto px-6 py-20 md:py-32 min-h-[calc(100vh-80px)] flex items-center"> <!-- 容器，設定最小高度以佔滿首屏 -->
-                <div class="grid md:grid-cols-2 gap-16 items-center"> <!-- 網格佈局，電腦版兩欄 -->
-                    <!-- 左側文字內容 -->
+    <main>
+        <!-- 1. Hero Section -->
+        <section id="home" class="bg-white">
+            <div class="container mx-auto px-6 py-20 md:py-32 min-h-[calc(100vh-80px)] flex items-center">
+                <div class="grid md:grid-cols-2 gap-16 items-center">
                     <div class="text-center md:text-left animate-fade-in">
-                        <h1 class="text-4xl md:text-6xl font-black text-primary leading-tight">在金融賽道上<br>定義你的影響力</h1> <!-- 主標題 -->
-                        <p class="mt-6 text-xl text-secondary-gray leading-relaxed">我們是群益期貨通路事業部。在這裡，你不只交易市場，更創造市場。</p> <!-- 副標題 -->
+                        <h1 class="text-4xl md:text-6xl font-black text-primary leading-tight">
+                            在金融賽道上<br>定義你的影響力
+                        </h1>
+                        <p class="mt-6 text-xl text-secondary-gray leading-relaxed">
+                            我們是群益期貨通路事業部。在這裡，你不只交易市場，更創造市場。
+                        </p>
                         
-                        <div class="my-8 h-12 flex items-center justify-center md:justify-start"> <!-- 職缺輪播容器 -->
-                            <div id="job-carousel" class="text-2xl font-bold text-brand-red transition-opacity duration-500"></div> <!-- 輪播文字將由 JS 填入 -->
+                        <div class="my-8 h-12 flex items-center justify-center md:justify-start">
+                            <div id="job-carousel" class="text-2xl font-bold text-brand-red transition-opacity duration-500"></div>
                         </div>
 
-                        <p class="mb-10 text-secondary-gray max-w-lg mx-auto md:mx-0 leading-relaxed">我們橫跨期貨、證券、財管與數位行銷，打造以客戶為中心的整合平台。如果你不安於現狀，渴望在金融業掀起波瀾，這裡就是你的舞台。</p> <!-- 詳細說明 -->
+                        <p class="mb-10 text-secondary-gray max-w-lg mx-auto md:mx-0 leading-relaxed">
+                            我們橫跨期貨、證券、財管與數位行銷，打造以客戶為中心的整合平台。如果你不安於現狀，渴望在金融業掀起波瀾，這裡就是你的舞台。
+                        </p>
                         
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 justify-center md:justify-start"> <!-- 按鈕群組 -->
-                            <a href="#openings" class="group w-full border-2 border-brand-red bg-white rounded-2xl px-6 py-5 shadow-sm flex items-center justify-between gap-4 font-bold text-brand-red hover:bg-red-50 hover:shadow-lg hover:-translate-y-0.5 transition">
-                                <span class="text-base md:text-lg">查看熱門職缺</span>
-                                <span class="arrow text-brand-red text-xl md:text-2xl transform transition-transform group-hover:translate-x-1">→</span>
-                            </a>
-                            <a href="#about-us" class="group w-full border-2 border-brand-red bg-white rounded-2xl px-6 py-5 shadow-sm flex items-center justify-between gap-4 font-bold text-brand-red hover:bg-red-50 hover:shadow-lg hover:-translate-y-0.5 transition">
-                                <span class="text-base md:text-lg">了解我們更多</span>
-                                <span class="arrow text-brand-red text-xl md:text-2xl transform transition-transform group-hover:translate-x-1">→</span>
-                            </a>
-                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 justify-center md:justify-start">
+  <a href="#openings" aria-label="查看熱門職缺" class="group w-full border-2 border-brand-red bg-white rounded-2xl px-6 py-5 shadow-sm flex items-center justify-between gap-4 font-bold text-brand-red hover:bg-red-50 hover:shadow-lg hover:-translate-y-0.5 transition focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2">
+    <span class="text-base md:text-lg">查看熱門職缺</span>
+    <span class="arrow text-brand-red text-xl md:text-2xl transform transition-transform group-hover:translate-x-1">→</span>
+  </a>
+  <a href="#about-us" aria-label="了解我們更多" class="group w-full border-2 border-brand-red bg-white rounded-2xl px-6 py-5 shadow-sm flex items-center justify-between gap-4 font-bold text-brand-red hover:bg-red-50 hover:shadow-lg hover:-translate-y-0.5 transition focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2">
+    <span class="text-base md:text-lg">了解我們更多</span>
+    <span class="arrow text-brand-red text-xl md:text-2xl transform transition-transform group-hover:translate-x-1">→</span>
+  </a>
+</div>
                     </div>
-                    <!-- 右側影片 -->
                     <div class="block md:block">
                         <div class="relative w-full h-full">
-                            <div class="relative w-full" style="padding-top:56.25%;"> <!-- 16:9 響應式容器 -->
-                                <iframe src="https://www.youtube.com/embed/yI5Mlw9Nyf4?rel=0&modestbranding=1&playsinline=1" title="YouTube video player" class="absolute inset-0 w-full h-full rounded-3xl shadow-2xl" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            </div>
+                            <div class="relative w-full" style="padding-top:56.25%;">
+  <iframe
+    src="https://www.youtube.com/embed/yI5Mlw9Nyf4?rel=0&modestbranding=1&playsinline=1"
+    title="YouTube video player"
+    class="absolute inset-0 w-full h-full rounded-3xl shadow-2xl"
+    frameborder="0"
+    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>
+</div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- ============================================= -->
-        <!-- ====== End of 1. 英雄區塊 (Hero Section) ====== -->
-        <!-- ============================================= -->
 
-        <!-- ============================================= -->
-        <!-- ======= 2. 公司亮點 (Highlights Section) ======= -->
-        <!-- ============================================= -->
+        <!-- Company Highlights Section -->
         <section id="highlights" class="py-20 bg-light-gray highlights-section bg-dots-soft">
             <div class="container mx-auto px-6">
-                <div class="fade-in-section text-center"> <!-- 標題區 -->
+                <div class="fade-in-section text-center">
                     <span class="metric-eyebrow">Capital Futures</span>
                     <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">投資人最推薦的期貨商</h2>
-                    <div class="w-24 h-1 bg-brand-red mx-auto mb-10"></div> <!-- 裝飾線 -->
+                    <div class="w-24 h-1 bg-brand-red mx-auto mb-10"></div>
                 </div>
-                <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto fade-in-section"> <!-- 指標卡片網格 -->
+                <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto fade-in-section">
                     <div class="card metric-card text-center p-8">
                         <p class="metric-value text-6xl font-black text-brand-red mb-2">13</p>
                         <h3 class="metric-label text-xl font-bold text-primary mb-2">全球布局交易所會員</h3>
@@ -410,41 +406,32 @@
                 </div>
             </div>
         </section>
-        <!-- ============================================= -->
-        <!-- ==== End of 2. 公司亮點 (Highlights Section) ==== -->
-        <!-- ============================================= -->
-        
-        <!-- ... 後續區塊的註解將以此類推 ... -->
 
-        <!-- ============================================= -->
-        <!-- ========== 3. 關於我們 (About Us) ========== -->
-        <!-- ============================================= -->
+        <!-- 2. About Us -->
         <section id="about-us" class="py-28 bg-white">
             <div class="container mx-auto px-6">
-                <div class="fade-in-section"> <!-- 區塊標題 -->
+                <div class="fade-in-section">
                     <h2 class="section-title">關於我們</h2>
                     <p class="section-subtitle">建立品牌信任感與願景畫面</p>
                 </div>
                 
-                <!-- 公司簡介區塊 -->
                 <div class="grid md:grid-cols-2 gap-12 items-center mb-20 fade-in-section">
-                    <div class="order-2 md:order-1"> <!-- 文字內容 -->
+                    <div class="order-2 md:order-1">
                         <div class="bg-white p-10 rounded-2xl shadow-lg h-full">
                             <h3 class="text-3xl font-bold text-primary mb-4">公司簡介</h3>
                             <p class="text-base leading-relaxed">群益期貨，是你看見世界、打造專業、寫下影響力的地方。我們是台灣唯一上市的期貨商(股票代號:6024)，擁有全球12大交易所會員資格。我們讓投資人可以一鍵直通全球市場，而你，就是這條通路的一部分。<br><br>在這裡，你不只是在金融圈打拼，而是參與一場真的在改變產業的轉型計畫。從DMA極速下單系統、到CME選擇權即時報價平台，再到我們的顧問陪跑服務與交易教育系統——我們不只想把商品賣出去，而是想讓更多人「懂怎麼做、做得穩、走得遠」。</p>
                         </div>
                     </div>
-                    <div class="order-1 md:order-2"> <!-- 圖片 -->
+                    <div class="order-1 md:order-2">
                         <img decoding="async" loading="lazy" src="images/群益架構.png" alt="群益期貨公司架構圖" class="rounded-2xl shadow-lg w-full h-full object-contain bg-white p-4" onerror="this.onerror=null;this.src='https://placehold.co/600x450/1E3A8A/ffffff?text=公司架構';">
                     </div>
                 </div>
 
-                <!-- 部門願景區塊 -->
                 <div class="grid md:grid-cols-2 gap-12 items-center fade-in-section">
-                    <div> <!-- 圖片 -->
+                    <div>
                         <img decoding="async" loading="lazy" src="images/通路事業部.jpg" alt="部門願景示意圖" class="rounded-2xl shadow-lg w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x450/ffedd5/1E3A8A?text=部門願景';">
                     </div>
-                    <div> <!-- 文字內容 -->
+                    <div>
                          <div class="bg-white p-10 rounded-2xl shadow-lg h-full">
                             <h3 class="text-3xl font-bold text-primary mb-4">部門願景</h3>
                             <p class="text-base leading-relaxed">通路事業部是群益期貨專責多通路整合與業務推進策略的核心部門。我們整合數位業務通路建置與集中化業務中心運營，同時支援全台分公司、集團異業合作對象與期貨交易輔助人。<br><br>我們的目標是：打造橫跨分公司、數位、制度與顧問商品的整合型行銷戰略部門，讓客戶、營業員與集團資源能夠無縫對接，共創效率與價值。</p>
@@ -452,29 +439,28 @@
                     </div>
                 </div>
 
-                <!-- 四大處室區塊 -->
                 <div class="fade-in-section">
                     <h3 class="text-3xl font-bold text-primary mt-24 mb-10 text-center"><span id="units"></span>四大處室：我們的作戰單位</h3>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8"> <!-- 卡片網格 -->
-                        <div class="card seg-card text-center"> <!-- 卡片1 -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="card seg-card text-center">
                             <div class="flex justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-red"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="m9 14 2 2 4-4"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
                             <h4 class="text-xl font-bold text-primary mb-2">綜合企劃處</h4>
                             <p class="text-sm font-semibold text-brand-red mb-3">讓數據說話的策略中台</p>
                             <p class="text-sm text-left leading-relaxed">部門的制度設計師與數據分析師。設計跨商品獎勵機制，負責KPI追蹤、數據儀表板建置、內部教育與SOP產出，是各處室背後最強的後勤支援。</p>
                         </div>
-                        <div class="card seg-card text-center"> <!-- 卡片2 -->
+                        <div class="card seg-card text-center">
                             <div class="flex justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-red"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><path d="M18 8v5"></path><path d="M21 11h-6"></path><rect x="12" y="1" width="10" height="12" rx="2"></rect></svg></div>
                             <h4 class="text-xl font-bold text-primary mb-2">證券通路處</h4>
                             <p class="text-sm font-semibold text-brand-red mb-3">分公司的策略夥伴</p>
                             <p class="text-sm text-left leading-relaxed">推動群益全台證券分公司導入期貨業務，整合團隊、商品、制度與在地需求，打造一條讓證券同仁能「懂期貨、會操作、敢推廣」的完整輔導路線。</p>
                         </div>
-                        <div class="card seg-card text-center"> <!-- 卡片3 -->
+                        <div class="card seg-card text-center">
                              <div class="flex justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M9.3 15.3a1 1 0 0 1 .4-1.8l1.8-1c.5-.2.9.3.8.8l-.6 2.3a1 1 0 0 1-1.7-.5Z"></path><path d="m14.7 13.7-1.8 1c-.5.2-.9-.3-.8-.8l.6-2.3a1 1 0 0 1 1.7.5Z"></path></svg></div>
                             <h4 class="text-xl font-bold text-primary mb-2">新興通路處</h4>
                             <p class="text-sm font-semibold text-gray-500 mb-3">未來可期</p>
                             <p class="text-sm text-left leading-relaxed">我們持續探索新的合作模式與機會，目前暫無職缺開放，但歡迎您持續關注。</p>
                         </div>
-                        <div class="card seg-card text-center"> <!-- 卡片4 -->
+                        <div class="card seg-card text-center">
                            <div class="flex justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-red"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line><path d="m8 9 1.5 3 1.5-3"></path><path d="M14.5 9h-3"></path><path d="M13 12h1.5"></path><path d="M16 12h1.5"></path></svg></div>
                             <h4 class="text-xl font-bold text-primary mb-2">數位通路處</h4>
                             <p class="text-sm font-semibold text-brand-red mb-3">數位時代的業務核心</p>
@@ -485,14 +471,8 @@
                 </div>
             </div>
         </section>
-        <!-- ============================================= -->
-        <!-- ======== End of 3. 關於我們 (About Us) ======== -->
-        <!-- ============================================= -->
 
-        <!-- ... 依此類推，為所有區塊加上註解 ... -->
-
-        <!-- ============================================= -->
-        <!-- ======== 4. 熱門職缺 (Job Openings) ========= -->
+        <!-- 3. Job Openings -->
         <section id="openings" class="py-28 bg-light-gray">
             <div class="container mx-auto px-6">
                 <div class="fade-in-section">
@@ -500,14 +480,12 @@
                     <p class="section-subtitle">我們在找尋能一起定義未來的夥伴。點擊職缺，發現你的可能性。</p>
                 </div>
                 <div id="job-list" class="space-y-4 max-w-4xl mx-auto fade-in-section">
-                    <!-- 職缺列表將由 JavaScript 動態生成並插入此處 -->
+                    <!-- Job items will be injected here by JavaScript -->
                 </div>
             </div>
         </section>
-        <!-- ============================================= -->
 
-        <!-- ============================================= -->
-        <!-- ==== 5. 福利與生活 (Benefits & Team Life) ==== -->
+        <!-- (合併) 4. Benefits & Team Life -->
         <section id="benefits-life" class="py-28 bg-white">
             <div class="container mx-auto px-6">
                 <div class="fade-in-section">
@@ -516,28 +494,26 @@
                 </div>
                 <div class="grid lg:grid-cols-2 gap-12 items-center fade-in-section">
                     <div class="grid md:grid-cols-2 gap-8">
-                        <!-- 福利卡片將由 JavaScript 動態生成並插入此處 -->
+                        <!-- Benefit cards will be injected here -->
                     </div>
-                    <div id="team" class="sr-only" aria-hidden="true"></div> <!-- 隱藏的錨點，用於導航 -->
-                    <div id="gallery-container" class="relative max-w-xl mx-auto"> <!-- 圖片庫容器 -->
+                    <div id="team" class="sr-only" aria-hidden="true"></div>
+                        <div id="gallery-container" data-anchor="team" class="relative max-w-xl mx-auto">
                         <img decoding="async" loading="lazy" id="gallery-image" class="w-full h-auto rounded-lg shadow-2xl" src="" alt="團隊生活照片">
-                        <button id="prev-btn" class="gallery-btn absolute top-1/2 -left-4 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 font-bold p-3 rounded-full shadow-md">
+                        <button id="prev-btn" class="gallery-btn absolute top-1/2 -left-4 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 font-bold p-3 rounded-full shadow-md transition-colors duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                         </button>
-                        <button id="next-btn" class="gallery-btn absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 font-bold p-3 rounded-full shadow-md">
+                        <button id="next-btn" class="gallery-btn absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 font-bold p-3 rounded-full shadow-md transition-colors duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </button>
                         <div id="gallery-dots" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                            <!-- 導航點將由 JavaScript 動態生成 -->
+                            <!-- Dots will be generated by JS -->
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- ============================================= -->
 
-        <!-- ============================================= -->
-        <!-- ========== 6. 職涯藍圖 (Career Path) ========= -->
+        <!-- (修改) 5. Career Path -->
         <section id="career-path" class="py-28 bg-light-gray">
             <div class="container mx-auto px-6">
                 <div class="fade-in-section">
@@ -545,11 +521,9 @@
                     <p class="section-subtitle">我們提供不只一份工作，而是一個能讓你持續成長、跨界發展的事業舞台。</p>
                 </div>
                 
-                <!-- 成長路徑 -->
                 <div class="fade-in-section mb-20">
                     <h3 class="text-3xl font-bold text-primary mb-12 text-center">清晰的成長路徑</h3>
                     <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-2">
-                        <!-- 每個 div 代表一個階段 -->
                         <div class="p-6 bg-white border-2 border-blue-100 rounded-lg text-center shadow-lg w-60">
                             <div class="text-sm text-gray-500">Stage 1</div>
                             <div class="text-xl font-bold text-primary">業務專員</div>
@@ -567,53 +541,62 @@
                     </div>
                 </div>
 
-                <!-- 培訓支援 -->
                 <div class="fade-in-section">
                     <h3 class="text-3xl font-bold text-primary mb-12 text-center">全方位的培訓支援</h3>
                     <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-                        <div class="grid grid-cols-1 gap-8"> <!-- 左側文字卡片 -->
+                        <div class="grid grid-cols-1 gap-8">
+                            <!-- Card 1: Education -->
                             <div class="card seg-card text-center">
+                                <div class="flex justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-red"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></div>
                                 <h4 class="text-xl font-bold text-primary mb-2">系統化教育訓練</h4>
                                 <p class="text-sm text-left leading-relaxed">定期辦理內部營業員教育訓練，加強同仁對產品、系統的熟稔度，並提供多樣化商品的交易策略。</p>
                             </div>
+                            <!-- Card 2: Activities -->
                             <div class="card seg-card text-center">
+                                <div class="flex justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-red"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/><path d="M12 12v6"/><path d="M15 15H9"/><path d="M12 22a2.5 2.5 0 0 0 2.5-2.5V18h-5v1.5A2.5 2.5 0 0 0 12 22z"/></svg></div>
                                 <h4 class="text-xl font-bold text-primary mb-2">多元轉化活動</h4>
                                 <p class="text-sm text-left leading-relaxed">透過內部獎勵、交易競賽活化客戶，並邀請知名講師舉辦講座，強化客戶交易觀念，同時開發外部客群。</p>
                             </div>
+                            <!-- Card 3: Digital Tools -->
                             <div class="card seg-card text-center">
+                                 <div class="flex justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-red"><path d="M21.2 8.4c.5.38.8.97.8 1.6v4c0 .63-.3 1.22-.8 1.6l-6 4.5c-.5.38-1.2.38-1.7 0l-6-4.5c-.5-.38-.8-.97-.8-1.6v-4c0-.63.3-1.22.8-1.6l6-4.5c.5-.38 1.2-.38 1.7 0l6 4.5z"/><path d="M12 22v-7.5"/><path d="m12 12-9-6.5"/><path d="m21 5.5-9 6.5"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="m12 22 9-6.5"/></svg></div>
                                 <h4 class="text-xl font-bold text-primary mb-2">強大數位工具</h4>
                                 <p class="text-sm text-left leading-relaxed">提供 I-View 投顧影音、智能推播、盤前直播、順勢通道工具等獨家資源，全面剖析市場，輔助業務推廣。</p>
                             </div>
                         </div>
-                        <div id="training-gallery-container" class="relative max-w-xl mx-auto rounded-lg overflow-hidden"> <!-- 右側圖片庫 -->
+                        <div id="training-gallery-container" class="relative max-w-xl mx-auto rounded-lg overflow-hidden">
                             <img decoding="async" loading="lazy" id="training-gallery-image" class="w-full h-auto rounded-lg shadow-2xl" src="" alt="培訓支援照片">
-                            <button id="training-prev-btn" class="gallery-btn absolute top-1/2 -left-4 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 font-bold p-3 rounded-full shadow-md"></button>
-                            <button id="training-next-btn" class="gallery-btn absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 font-bold p-3 rounded-full shadow-md"></button>
-                            <div id="training-gallery-dots" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2"></div>
-                            <p id="training-caption" class="training-caption"></p> <!-- 圖片說明文字 -->
-                        </div>
+                            <button id="training-prev-btn" class="gallery-btn absolute top-1/2 -left-4 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 font-bold p-3 rounded-full shadow-md transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                            </button>
+                            <button id="training-next-btn" class="gallery-btn absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 font-bold p-3 rounded-full shadow-md transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </button>
+                            <div id="training-gallery-dots" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                <!-- Dots will be generated by JS -->
+                            </div>
+                        
+<p id="training-caption" class="training-caption"></p>
+</div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- ============================================= -->
 
-        <!-- ============================================= -->
-        <!-- ======= 7. 應徵流程 (Application Process) ====== -->
+        <!-- 6. Application Process -->
         <section id="apply" class="py-28 bg-white">
              <div class="container mx-auto px-6">
                 <div class="fade-in-section">
                     <h2 class="section-title">應徵流程</h2>
                     <p class="section-subtitle">我們設計了簡單透明的流程，期待與你相遇。</p>
                 </div>
-                <!-- 流程步驟圖 -->
                 <div class="relative max-w-5xl mx-auto fade-in-section">
-                    <div class="hidden md:block absolute top-8 left-0 w-full h-1 bg-gray-300"></div> <!-- 中間的連接線 -->
+                    <div class="hidden md:block absolute top-8 left-0 w-full h-1 bg-gray-300"></div>
                     <div id="apply-steps-container" class="relative grid grid-cols-1 md:grid-cols-5 gap-8 text-center">
-                        <!-- 流程步驟將由 JavaScript 動態生成 -->
+                        <!-- Steps will be injected here -->
                     </div>
                 </div>
-                <!-- 應徵管道 -->
+
                 <div class="mt-20 grid md:grid-cols-3 gap-8 text-center max-w-5xl mx-auto fade-in-section">
                     <div class="card p-8">
                         <h3 class="text-xl font-bold mb-4 text-primary">前往 104 網站應徵</h3>
@@ -630,10 +613,8 @@
                 </div>
              </div>
         </section>
-        <!-- ============================================= -->
 
-        <!-- ============================================= -->
-        <!-- ========== 8. 常見問題 (FAQ Section) ========= -->
+        <!-- 7. FAQ Section -->
         <section id="faq" class="py-28 bg-light-gray">
             <div class="container mx-auto px-6">
                 <div class="fade-in-section">
@@ -641,14 +622,12 @@
                     <p class="section-subtitle">預先回答您的疑問，讓您更放心。</p>
                 </div>
                 <div id="faq-container" class="max-w-3xl mx-auto space-y-4 fade-in-section">
-                    <!-- FAQ 項目將由 JavaScript 動態生成 -->
+                    <!-- FAQ items will be injected here -->
                 </div>
             </div>
         </section>
-        <!-- ============================================= -->
         
-        <!-- ============================================= -->
-        <!-- ================= 頁尾 (Footer) =============== -->
+        <!-- Footer -->
         <footer class="bg-gray-800 text-white pt-16 pb-12">
             <div class="container mx-auto px-6 text-center">
                 <h3 class="text-2xl font-bold mb-4">有問題想先聊聊？</h3>
@@ -665,40 +644,31 @@
                 <p class="text-sm text-gray-400">&copy; 2024 群益期貨股份有限公司版權所有</p>
             </div>
         </footer>
-        <!-- ============================================= -->
     </main>
     
-    <!-- ============================================= -->
-    <!-- ====== 職缺詳情彈出視窗 (Job Modal) ====== -->
-    <!-- ============================================= -->
-    <div id="job-modal-overlay" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div> <!-- 背景遮罩 -->
-    <div id="job-modal" class="fixed top-1/2 left-1/2 w-[92vw] max-w-3xl max-h-[90vh] bg-white rounded-2xl shadow-2xl z-50 opacity-0 scale-95 pointer-events-none transition-all duration-300 flex flex-col -translate-x-1/2 -translate-y-1/2"> <!-- 視窗主體 -->
-        <div class="p-6 border-b flex justify-between items-start"> <!-- 視窗標題區 -->
+    <!-- NEW: Job Details Modal -->
+    <div id="job-modal-overlay" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <div id="job-modal" class="fixed top-1/2 left-1/2 w-[92vw] max-w-3xl max-h-[90vh] bg-white rounded-2xl shadow-2xl z-50 opacity-0 scale-95 pointer-events-none transition-all duration-300 flex flex-col -translate-x-1/2 -translate-y-1/2">
+        <div class="p-6 border-b flex justify-between items-start">
             <div>
                 <h2 id="modal-title" class="text-2xl font-bold text-primary">職缺詳情</h2>
                 <p id="modal-department" class="text-secondary-gray font-semibold"></p>
             </div>
-            <button id="modal-close-btn" class="text-gray-400 hover:text-brand-red transition-colors" aria-label="關閉視窗"> <!-- 關閉按鈕 -->
+            <button id="modal-close-btn" class="text-gray-400 hover:text-brand-red transition-colors" aria-label="關閉視窗">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
         </div>
-        <div id="modal-body" class="p-6 md:p-8 overflow-y-auto flex-grow"> <!-- 視窗內容區 -->
-            <!-- 職缺詳細內容將由 JavaScript 動態插入 -->
+        <div id="modal-body" class="p-6 md:p-8 overflow-y-auto flex-grow">
+            <!-- Job details will be injected here -->
         </div>
-        <div class="p-6 bg-slate-50 border-t rounded-b-2xl text-center"> <!-- 視窗底部操作區 -->
+        <div class="p-6 bg-slate-50 border-t rounded-b-2xl text-center">
             <a href="#apply" id="modal-apply-btn" class="cta-button-primary inline-block">我要應徵這個職位</a>
         </div>
     </div>
-    <!-- ============================================= -->
 
-    <!-- ============================================= -->
-    <!-- ============== JavaScript 腳本 ============== -->
-    <!-- ============================================= -->
     <script>
-        // --- 資料定義 ---
-        // 輪播職缺標題
+        // --- Data ---
         const jobCarouselItems = ["專案整合幕僚","證券通路業務","數位通路業務科長","數位通路業務員","行政企劃人員"];
-        // 職缺詳細資料
         const jobs = [
             {id:1,title:'專案整合幕僚',department:'綜合企劃處',tags:['跨部門協作','制度設計','專案管理'],preview:'我們正在尋找一位擁有系統思維、進度敏感度與策略眼光的「幕僚型人才」。你將直接支援部門主管，協助追蹤專案、整合資源、建立流程，讓策略真正被執行、讓專案不只是待辦清單，而是成果。這不只是追進度的工作，而是幫一整個部門「跑得動、跑得快、跑得準」。',description:'我們正在尋找一位擁有系統思維、進度敏感度與策略眼光的「幕僚型人才」。你將直接支援部門主管，協助追蹤專案、整合資源、建立流程，讓策略真正被執行、讓專案不只是待辦清單，而是成果。這不只是追進度的工作，而是幫一整個部門「跑得動、跑得快、跑得準」。',responsibilities:['整合各處室專案進度與風險預警、進程設定','協助製作簡報、會議記錄、提案架構與執行追蹤','跨部門協作窗口，處理部門與他單位的溝通橋梁','優化制度流程與KPI追蹤邏輯，提升內部效率','主管交辦之專案研究、數據報告、制度內化輔助'],growth:'你將學會如何從部門高度鳥瞰全局，並深入細節推動執行。這是培養策略思維與營運管理能力的最佳位置。',qualifications:['擅長統整資訊與掌控節奏，邏輯與文字表達都不錯','熟悉 Notion / Excel / PowerPoint 等工具','有專案管理、營運企劃、幕僚或策略助理經驗佳','喜歡在「人與制度中間」，幫助事情發生的人']},
             {id:2,title:'證券通路業務',department:'證券通路處',tags:['分公司協調','教育輔導','現場手感'],preview:'不是只會講商品，而是願意走進分公司，帶著制度與商品去解題，講「怎麼讓這件事在這裡發生」。',description:'不是每個證券分公司都會主動推期貨，但你可以讓這件事變得可行。我們正在尋找願意走進分公司、帶著制度與商品去解題的你。不是只會講商品，而是願意講「怎麼讓這件事在這裡發生」。',responsibilities:['規劃分公司期貨教育與商品推廣活動','協助設計銷售話術與業績激勵制度，提升轉化動能','實地拜訪、輔導營業員跨商品經營（含策略分享）','擔任總公司與據點的溝通協調者，處理落地細節','撰寫活動報告與提案資料，追蹤制度成效'],growth:'你將成為總公司與前線的關鍵樞紐，培養面對面的溝通協調力、教育訓練的設計力，以及解決實際業務問題的實戰力。',qualifications:['曾在金融前線（如證券營業員）或推廣端工作過','喜歡到現場與人互動、分享經驗、拆解問題','懂商品、不怕講解，有制度敏感度與教學熱忱','願意全台分公司出差，有戰略思維也有現場手感']},
@@ -706,14 +676,12 @@
             {id:4,title:'數位通路業務員',department:'數位通路處',tags:['數位導客','客戶經營','團隊合作'],preview:'這份工作不是拼人脈、拼話術，而是透過內容、工具與團隊合作，系統化地培養你成為懂操作、會引導、持續進化的數位型業務員。',description:'你不需要自己單打獨鬥、從零摸索。我們已經準備好完整的 LINE 導客流程、教育素材、活動支援，讓你可以把重心放在「與客戶建立信任、提供價值」上。這份工作不是拼人脈、拼話術，而是透過內容、工具與團隊合作，系統化地培養你成為懂操作、會引導、持續進化的數位型業務員。',responsibilities:['經營國內外期貨、選擇權交易客戶，提供策略觀點與市場分析','透過講座、LINE、教育互動導客，建立穩定客戶關係','協助使用交易工具與商品操作引導（含期權邏輯）','積極參與訓練課程與商品會議，持續強化市場敏感度','發想、執行團隊業務活動，協助推廣主題與轉化流程'],growth:'你將學會最前緣的數位行銷與客戶經營技巧，建立自己的線上專業品牌，並在團隊支援下，打造穩健且可持續成長的業績模式。',qualifications:['有期貨業務員資格（必要）','對市場、數據、交易邏輯有興趣，樂於學習','重視關係經營，致力於長期支持與策略陪跑','想從單打獨鬥轉向系統化業績模式的人']},
             {id:5,title:'行政企劃人員',department:'綜合企劃處',tags:['制度設計','數據分析','營運支援'],preview:'你將成為部門最重要的推進引擎之一，負責設計制度、撰寫SOP、做出讓大家看得懂的數據報表，幫助每一位業務、每一個制度都能清楚執行、持續優化。',description:'你將成為部門最重要的推進引擎之一，負責設計制度、撰寫SOP、做出讓大家看得懂的數據報表，幫助每一位業務、每一個制度都能清楚執行、持續優化。如果你喜歡邏輯、有系統、善分析，這裡很適合你發揮。',responsibilities:['設計獎勵制度、跨商品激勵方案與業績追蹤機制','製作業務儀表板與營運報表，協助主管掌握數據與績效','撰寫並維護SOP、制度公告、推動內部制度落地','整合行銷活動所需行政支援，協助物料、流程與後勤安排','參與內外部行銷推廣與教育活動之專案執行與追蹤','支援跨處行政流程與主管交辦事項，協助專案統整與資料彙整'],growth:'你將成為組織運作的架構師，從數據中洞察問題，用制度解決問題。這份工作能培養你強大的邏輯分析與流程優化能力。',qualifications:['熟悉 Excel、Google Sheets、PPT','有制度設計、營運分析、行政或業務支援經驗佳','細心、有邏輯、可以一次處理多件事且條理清楚','喜歡當組織中讓事情變簡單、資訊變透明的那個人']}
         ];
-        // 福利項目資料
         const benefits = [
             {icon:'<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-red"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>',title:'全方位年度福利',description:'我們關心您的身心，提供年度健康檢查；您的貢獻值得回報，保障年終與三節獎金，更有旅遊補助與生日禮金，讓您工作與生活平衡。'},
             {icon:'<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-red"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>',title:'系統化培訓計畫',description:'從完整的新人訓到跨單位輪調，我們投資您的成長。這裡有深度的顧問商品教育，更有外部專業課程補助，助您成為頂尖人才。'},
             {icon:'<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-red"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',title:'透明的溝通文化',description:'這裡不只教您賣商品，更教您建立專業品牌。我們鼓勵雙向溝通，您的聲音會被聽見，您的想法能推動改變。'},
             {icon:'<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-red"><path d="M12.54 2.13a1 1 0 0 0-1.08 0l-4 2A1 1 0 0 0 7 5a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1 1 1 0 0 0-.46-.87Z"/><path d="M4 10.27V22c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-11.73"/><path d="M22 10.27 12 5 2 10.27"/></svg>',title:'充滿活力的團隊',description:'我們是戰友，也是家人。定期的部門聚餐、慶功宴、主題分享會與戶外 Team Building，讓團隊合作不只在辦公室，更在生活裡。'}
         ];
-        // 應徵流程步驟資料
         const applySteps = [
             {number:1, title:'提出申請', description:'投遞履歷或加入LINE'},
             {number:2, title:'預約初談', description:'線上或電話初步認識'},
@@ -721,68 +689,68 @@
             {number:4, title:'條件確認', description:'薪資福利與報到細節'},
             {number:'✓', title:'成為戰友', description:'歡迎加入我們！', isFinal:true}
         ];
-        // 常見問題資料
         const faqs = [
             { question: '我是金融新手也可以應徵嗎？', answer: '部分職位歡迎無經驗但充滿熱忱的新手，特別是數位通路業務員與行政企劃人員。我們會提供完整的職前與在職訓練。但部分職位如證券通路業務、業務科長則需要相關經驗。請詳閱各職缺的條件說明。' },
             { question: '會不會需要出差到分公司？', answer: '「證券通路業務」需要頻繁至全台各分公司出差，是這個職位的主要工作內容之一。其他職位基本上以內勤為主，若有出差需求會是特例情況。' },
             { question: '需要自己找客戶嗎？', answer: '我們的「數位通路處」已建立一套完整的數位導客系統，公司會提供名單與工具，讓你專注在客戶經營與服務上，而非傳統的陌生開發。我們更重視團隊合作與系統化作戰。' },
             { question: '有績效壓力嗎？制度怎麼算？', answer: '我們是目標導向的團隊，設有清晰的KPI與獎勵制度，但更強調團隊目標的達成。我們鼓勵健康的競爭，但反對惡性搶單。詳細的獎金與激勵制度會在面談時清楚說明，我們相信透明的制度是團隊信任的基礎。' }
         ];
-        // 團隊生活照片路徑
-        const teamPhotos = [ 'images/照片7.jpg', 'images/照片6.jpg', 'images/照片5.jpg', 'images/照片4.jpg', 'images/照片3.jpg', 'images/照片2.jpg', 'images/照片1.jpg' ];
-        // 培訓照片及說明文字
-        const trainingPhotos = [
-            {src:'images/教育訓練.jpg', caption:'教育訓練：完整新人訓練與專業進修課程'},
-            {src:'images/內外業務轉換.jpg', caption:'內外業務轉換：內勤 × 外勤協作推進業務'},
-            {src:'images/活化客戶.jpg', caption:'活化客戶：活動設計、獎勵機制提升轉化'},
-            {src:'images/投資講座.png', caption:'投資講座：專家講座與市場觀點分享'}
+        const teamPhotos = [
+            'images/照片7.jpg', 'images/照片6.jpg', 'images/照片5.jpg', 'images/照片4.jpg',
+            'images/照片3.jpg', 'images/照片2.jpg', 'images/照片1.jpg'
         ];
+        const trainingPhotos = [
+    {src:'images/教育訓練.jpg', caption:'教育訓練：完整新人訓練與專業進修課程'},
+    {src:'images/內外業務轉換.jpg', caption:'內外業務轉換：內勤 × 外勤協作推進業務'},
+    {src:'images/活化客戶.jpg', caption:'活化客戶：活動設計、獎勵機制提升轉化'},
+    {src:'images/投資講座.png', caption:'投資講座：專家講座與市場觀點分享'}
+];
 
-        // --- 功能邏輯 ---
-        document.addEventListener('DOMContentLoaded', function() { // 等待 DOM 載入完成後執行
-            // --- 手機版選單開關 ---
-            const mobileMenuButton = document.getElementById('mobile-menu-button'); // 獲取漢堡按鈕
-            const mobileMenu = document.getElementById('mobile-menu'); // 獲取手機選單
-            mobileMenuButton.addEventListener('click', () => { // 監聽按鈕點擊事件
-                mobileMenu.classList.toggle('hidden'); // 切換選單的顯示/隱藏
+        // --- Functions ---
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
             });
 
-            // --- 英雄區塊職缺輪播 ---
-            const jobCarouselEl = document.getElementById('job-carousel'); // 獲取輪播文字的容器
-            if(jobCarouselEl) { // 如果容器存在
-                let carouselIndex = 0; // 初始化索引
-                function updateCarousel() { // 更新輪播文字的函式
-                    jobCarouselEl.classList.add('opacity-0'); // 先讓文字透明
-                    setTimeout(() => { // 延遲 0.5 秒後執行
-                        jobCarouselEl.textContent = jobCarouselItems[carouselIndex]; // 更新文字內容
-                        jobCarouselEl.classList.remove('opacity-0'); // 移除透明，產生淡入效果
-                        carouselIndex = (carouselIndex + 1) % jobCarouselItems.length; // 更新索引，如果到底了就從頭開始
+            // Job Carousel
+            const jobCarouselEl = document.getElementById('job-carousel');
+            if(jobCarouselEl) {
+                let carouselIndex = 0;
+                function updateCarousel() {
+                    jobCarouselEl.classList.add('opacity-0');
+                    setTimeout(() => {
+                        jobCarouselEl.textContent = jobCarouselItems[carouselIndex];
+                        jobCarouselEl.classList.remove('opacity-0');
+                        carouselIndex = (carouselIndex + 1) % jobCarouselItems.length;
                     }, 500);
                 }
-                updateCarousel(); // 立即執行一次
-                setInterval(updateCarousel, 3000); // 每 3 秒執行一次
+                updateCarousel();
+                setInterval(updateCarousel, 3000);
             }
 
-            // --- 職缺彈出視窗 (Modal) 邏輯 ---
-            const jobListContainer = document.getElementById('job-list'); // 職缺列表容器
-            const modalOverlay = document.getElementById('job-modal-overlay'); // 遮罩層
-            const modal = document.getElementById('job-modal'); // 彈出視窗
-            const modalTitle = document.getElementById('modal-title'); // 視窗標題
-            const modalDepartment = document.getElementById('modal-department'); // 視窗部門
-            const modalBody = document.getElementById('modal-body'); // 視窗內容
-            const modalCloseBtn = document.getElementById('modal-close-btn'); // 關閉按鈕
-            const modalApplyBtn = document.getElementById('modal-apply-btn'); // 應徵按鈕
+            // --- REFACTORED: Job Modal Logic ---
+            const jobListContainer = document.getElementById('job-list');
+            const modalOverlay = document.getElementById('job-modal-overlay');
+            const modal = document.getElementById('job-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDepartment = document.getElementById('modal-department');
+            const modalBody = document.getElementById('modal-body');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
+            const modalApplyBtn = document.getElementById('modal-apply-btn');
 
-            if (jobListContainer && modal) { // 確保所有元素都存在
-                // 1. 動態生成職缺列表
+            if (jobListContainer && modal) {
+                // 1. Populate Job List with clickable cards
                 jobs.forEach(job => {
-                    const wrapper = document.createElement('div'); // 建立一個 div
-                    wrapper.className = 'job-card-trigger bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer group'; // 設定樣式
-                    wrapper.dataset.jobId = job.id; // 將職缺 ID 存入 data-* 屬性
-                    wrapper.setAttribute('role', 'button'); // 設定為按鈕角色
-                    wrapper.setAttribute('tabindex', '0'); // 讓它可以被鍵盤 focus
-                    wrapper.setAttribute('aria-label', `查看 ${job.title} 職缺詳情`); // 提供無障礙閱讀資訊
-                    // 組合 HTML 內容
+                    const wrapper = document.createElement('div');
+                    // Using a class 'job-card-trigger' for clarity in event delegation
+                    wrapper.className = 'job-card-trigger bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer group';
+                    wrapper.dataset.jobId = job.id;
+                    wrapper.setAttribute('role', 'button');
+                    wrapper.setAttribute('tabindex', '0');
+                    wrapper.setAttribute('aria-label', `查看 ${job.title} 職缺詳情`);
                     wrapper.innerHTML = `
                         <div class="p-6">
                             <div class="flex justify-between items-start gap-4">
@@ -798,15 +766,15 @@
                             </div>
                         </div>
                     `;
-                    jobListContainer.appendChild(wrapper); // 將建立好的元素加入到列表中
+                    jobListContainer.appendChild(wrapper);
                 });
 
-                // 2. 開啟視窗的函式
+                // 2. Function to open modal
                 const openModal = (jobId) => {
-                    const job = jobs.find(j => j.id == jobId); // 根據 ID 找到對應的職缺資料
-                    if (!job) return; // 如果找不到就結束
+                    const job = jobs.find(j => j.id == jobId);
+                    if (!job) return;
 
-                    // 填入視窗內容
+                    // Populate modal content
                     modalTitle.textContent = job.title;
                     modalDepartment.textContent = job.department;
                     modalBody.innerHTML = `
@@ -830,51 +798,51 @@
                         </div>
                     `;
                     
-                    // 顯示視窗和遮罩
+                    // Show modal
                     modalOverlay.classList.add('active');
                     modal.classList.add('active');
-                    document.body.style.overflow = 'hidden'; // 禁止背景滾動
+                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
                 };
 
-                // 3. 關閉視窗的函式
+                // 3. Function to close modal
                 const closeModal = () => {
                     modalOverlay.classList.remove('active');
                     modal.classList.remove('active');
-                    document.body.style.overflow = ''; // 恢復背景滾動
+                    document.body.style.overflow = ''; // Restore scrolling
                 };
 
-                // 4. 綁定事件監聽
-                jobListContainer.addEventListener('click', (e) => { // 監聽整個列表的點擊事件 (事件代理)
-                    const card = e.target.closest('.job-card-trigger'); // 找到被點擊的職缺卡片
+                // 4. Event Listeners
+                jobListContainer.addEventListener('click', (e) => {
+                    const card = e.target.closest('.job-card-trigger');
                     if (card) {
-                        openModal(card.dataset.jobId); // 如果找到，就開啟對應的視窗
+                        openModal(card.dataset.jobId);
                     }
                 });
-                 jobListContainer.addEventListener('keydown', (e) => { // 監聽鍵盤事件
-                    if (e.key === 'Enter' || e.key === ' ') { // 如果是 Enter 或空白鍵
+                 jobListContainer.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
                         const card = e.target.closest('.job-card-trigger');
                         if (card) {
-                            e.preventDefault(); // 防止頁面滾動
+                            e.preventDefault(); // Prevent space from scrolling
                             openModal(card.dataset.jobId);
                         }
                     }
                 });
 
-                modalCloseBtn.addEventListener('click', closeModal); // 點擊關閉按鈕
-                modalOverlay.addEventListener('click', closeModal); // 點擊遮罩層
-                modalApplyBtn.addEventListener('click', closeModal); // 點擊應徵按鈕也會關閉視窗
+                modalCloseBtn.addEventListener('click', closeModal);
+                modalOverlay.addEventListener('click', closeModal);
+                modalApplyBtn.addEventListener('click', closeModal); // Also close modal when clicking apply
 
-                document.addEventListener('keydown', (e) => { // 監聽整個文件的鍵盤事件
-                    if (e.key === 'Escape' && modal.classList.contains('active')) { // 如果按下 ESC 且視窗是開啟的
-                        closeModal(); // 關閉視窗
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && modal.classList.contains('active')) {
+                        closeModal();
                     }
                 });
             }
             
-            // --- 動態產生福利項目 ---
-            const benefitsContainer = document.querySelector('#benefits-life .grid .grid'); // 找到福利卡片的容器
+            // Populate Benefits
+            const benefitsContainer = document.querySelector('#benefits-life .grid .grid');
             if(benefitsContainer) {
-                benefits.forEach(benefit => { // 遍歷福利資料
+                benefits.forEach(benefit => {
                     const card = document.createElement('div');
                     card.className = 'card';
                     card.innerHTML = `
@@ -882,62 +850,62 @@
                         <h4 class="text-xl font-bold text-primary mb-5">${benefit.title}</h4>
                         <p class="text-sm leading-loose">${benefit.description}</p>
                     `;
-                    benefitsContainer.appendChild(card); // 加入到容器中
+                    benefitsContainer.appendChild(card);
                 });
             }
 
-            // --- 團隊生活圖片庫 ---
-            const galleryImage = document.getElementById('gallery-image'); // 圖片元素
-            const prevBtn = document.getElementById('prev-btn'); // 上一張按鈕
-            const nextBtn = document.getElementById('next-btn'); // 下一張按鈕
-            const galleryDotsContainer = document.getElementById('gallery-dots'); // 導航點容器
+            // Team Life Gallery
+            const galleryImage = document.getElementById('gallery-image');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const galleryDotsContainer = document.getElementById('gallery-dots');
             if(galleryImage) {
-                let currentPhotoIndex = 0; // 當前圖片索引
+                let currentPhotoIndex = 0;
 
-                function updateGallery() { // 更新圖片庫顯示的函式
-                    galleryImage.src = teamPhotos[currentPhotoIndex]; // 更新圖片來源
-                    galleryImage.onerror = function() { // 增加錯誤處理
+                function updateGallery() {
+                    galleryImage.src = teamPhotos[currentPhotoIndex];
+                    galleryImage.onerror = function() {
                         this.onerror=null;
                         this.src=`https://placehold.co/900x600/f1f5f9/334155?text=圖片載入失敗`;
                     };
-                    prevBtn.disabled = currentPhotoIndex === 0; // 如果是第一張，禁用上一張按鈕
-                    nextBtn.disabled = currentPhotoIndex === teamPhotos.length - 1; // 如果是最後一張，禁用下一張按鈕
+                    prevBtn.disabled = currentPhotoIndex === 0;
+                    nextBtn.disabled = currentPhotoIndex === teamPhotos.length - 1;
                     
-                    const dots = galleryDotsContainer.querySelectorAll('.dot'); // 獲取所有導航點
-                    dots.forEach((dot, index) => { // 遍歷導航點
-                        dot.classList.toggle('bg-primary', index === currentPhotoIndex); // 當前圖片對應的點設為主要顏色
-                        dot.classList.toggle('bg-gray-300', index !== currentPhotoIndex); // 其他點設為灰色
+                    const dots = galleryDotsContainer.querySelectorAll('.dot');
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('bg-primary', index === currentPhotoIndex);
+                        dot.classList.toggle('bg-gray-300', index !== currentPhotoIndex);
                     });
                 }
                 
-                teamPhotos.forEach((_, index) => { // 根據圖片數量生成導航點
+                teamPhotos.forEach((_, index) => {
                     const dot = document.createElement('button');
                     dot.className = 'dot w-3 h-3 rounded-full transition-colors duration-300';
-                    dot.addEventListener('click', () => { // 監聽點擊事件
-                        currentPhotoIndex = index; // 更新索引
-                        updateGallery(); // 更新顯示
+                    dot.addEventListener('click', () => {
+                        currentPhotoIndex = index;
+                        updateGallery();
                     });
                     galleryDotsContainer.appendChild(dot);
                 });
 
-                prevBtn.addEventListener('click', () => { // 上一張
+                prevBtn.addEventListener('click', () => {
                     if (currentPhotoIndex > 0) {
                         currentPhotoIndex--;
                         updateGallery();
                     }
                 });
 
-                nextBtn.addEventListener('click', () => { // 下一張
+                nextBtn.addEventListener('click', () => {
                     if (currentPhotoIndex < teamPhotos.length - 1) {
                         currentPhotoIndex++;
                         updateGallery();
                     }
                 });
 
-                updateGallery(); // 初始化顯示
+                updateGallery();
             }
 
-            // --- 培訓支援圖片庫 (邏輯同上) ---
+            // Training Gallery
             const trainingGalleryImage = document.getElementById('training-gallery-image');
             const trainingCaptionEl = document.getElementById('training-caption');
             const trainingPrevBtn = document.getElementById('training-prev-btn');
@@ -948,11 +916,11 @@
 
                 function updateTrainingGallery() {
                     trainingGalleryImage.src = trainingPhotos[currentTrainingPhotoIndex].src;
-                    trainingGalleryImage.onerror = function() { // 增加錯誤處理
+                    if (trainingCaptionEl) trainingCaptionEl.textContent = trainingPhotos[currentTrainingPhotoIndex].caption;
+                    trainingGalleryImage.onerror = function() {
                         this.onerror=null;
                         this.src=`https://placehold.co/900x600/f1f5f9/334155?text=圖片載入失敗`;
                     };
-                    if (trainingCaptionEl) trainingCaptionEl.textContent = trainingPhotos[currentTrainingPhotoIndex].caption;
                     trainingPrevBtn.disabled = currentTrainingPhotoIndex === 0;
                     trainingNextBtn.disabled = currentTrainingPhotoIndex === trainingPhotos.length - 1;
                     
@@ -990,7 +958,7 @@
                 updateTrainingGallery();
             }
 
-            // --- 動態產生應徵流程步驟 ---
+            // Populate Apply Steps
             const applyStepsContainer = document.getElementById('apply-steps-container');
             if(applyStepsContainer) {
                 applySteps.forEach(step => {
@@ -1005,7 +973,7 @@
                 });
             }
 
-            // --- 動態產生常見問題 ---
+            // Populate FAQs
             const faqContainer = document.getElementById('faq-container');
             if(faqContainer) {
                 faqs.forEach(faq => {
@@ -1022,77 +990,112 @@
                     faqContainer.appendChild(faqItem);
                 });
 
-                // --- 常見問題折疊效果 ---
+                // FAQ Accordion Logic
                 faqContainer.addEventListener('click', function(e) {
-                    const button = e.target.closest('.accordion-button'); // 找到被點擊的按鈕
+                    const button = e.target.closest('.accordion-button');
                     if (button) {
-                        button.classList.toggle('open'); // 切換按鈕的 open class (用於箭頭旋轉)
-                        const content = button.nextElementSibling; // 找到問題對應的答案區塊
-                        content.classList.toggle('hidden'); // 切換答案的顯示/隱藏
+                        button.classList.toggle('open');
+                        const content = button.nextElementSibling;
+                        content.classList.toggle('hidden');
                     }
                 });
             }
 
-            // --- 頁面滾動淡入動畫 ---
-            const sections = document.querySelectorAll('.fade-in-section'); // 獲取所有需要動畫的區塊
-            const observer = new IntersectionObserver((entries) => { // 建立一個觀察器
-                entries.forEach(entry => { // 當觀察的元素進入或離開視窗時
-                    if (entry.isIntersecting) { // 如果元素進入視窗
-                        entry.target.classList.add('is-visible'); // 加入 is-visible class 來觸發動畫
+            // Scroll Animations
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
                     }
                 });
-            }, { threshold: 0.1 }); // 當元素 10% 可見時觸發
+            }, { threshold: 0.1 });
 
-            sections.forEach(section => { // 讓觀察器開始觀察每一個區塊
+            sections.forEach(section => {
                 observer.observe(section);
             });
         });
     </script>
 
-    <script>
-        // --- 手機版選單的完整互動邏輯 (自我執行函式，避免污染全域變數) ---
-        (function(){
-            function qs(sel){ return document.querySelector(sel); } // 簡化 document.querySelector
-            const btn  = qs('#mobile-menu-button');
-            const menu = qs('#mobile-menu');
-            if(!btn || !menu) return; // 如果找不到元素就結束
 
-            btn.setAttribute('aria-controls','mobile-menu'); // 設定無障礙屬性
-            btn.setAttribute('aria-expanded','false');
+<script>
+// Force-start at top unless there's a hash (handles Safari/BFCache/lazy images causing reflow)
+(function() {
+  var hasHash = !!location.hash;
+  try { if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; } } catch(e) {}
 
-            btn.addEventListener('click', function(e){ // 監聽按鈕點擊
-                e.stopPropagation(); // 防止事件冒泡
-                const isHidden = menu.classList.contains('hidden');
-                if(isHidden){ menu.classList.remove('hidden'); } // 如果是隱藏的，就顯示
-                else        { menu.classList.add('hidden'); } // 如果是顯示的，就隱藏
-                btn.setAttribute('aria-expanded', String(isHidden)); // 更新無障礙狀態
-            });
+  function jumpTop() {
+    if (hasHash) return;
+    var doc = document.documentElement, body = document.body;
+    // Temporarily disable smooth scroll to avoid animated drift
+    var prev = doc.style.scrollBehavior;
+    doc.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    // Restore after tick
+    setTimeout(function(){ doc.style.scrollBehavior = prev || ''; }, 50);
+  }
 
-            function closeMenu(){ // 關閉選單的函式
-                if(!menu.classList.contains('hidden')){
-                    menu.classList.add('hidden');
-                    btn.setAttribute('aria-expanded','false');
-                }
-            }
+  // Multiple safeguards in the first second after load
+  function guard() {
+    if (hasHash) return;
+    var tries = 0;
+    var t = setInterval(function() {
+      if (location.hash) { clearInterval(t); return; }
+      if (window.scrollY > 20) jumpTop();
+      if (++tries > 30) clearInterval(t); // ~1.5s
+    }, 50);
+  }
 
-            // 點擊選單連結時自動關閉
-            menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-            // 點擊選單以外區域時自動關閉
-            document.addEventListener('click', function(ev){
-                const within = menu.contains(ev.target) || btn.contains(ev.target);
-                if(!within) closeMenu();
-            });
-            // 按下 ESC 鍵時自動關閉
-            document.addEventListener('keydown', function(ev){
-                if(ev.key === 'Escape') closeMenu();
-            });
-            // 視窗變寬 (切換到電腦版) 時自動關閉
-            window.addEventListener('resize', function(){
-                if(window.matchMedia('(min-width: 768px)').matches){
-                    closeMenu();
-                }
-            });
-        })();
-    </script>
+  // Run as early as possible
+  window.addEventListener('DOMContentLoaded', jumpTop);
+  window.addEventListener('load', function(){ jumpTop(); guard(); });
+  window.addEventListener('pageshow', function(e){ if (e.persisted) { jumpTop(); guard(); } });
+})();
+</script>
+
+
+
+<script>
+// Mobile menu toggle + auto-close (click link / outside / ESC / resize)
+(function(){
+  function qs(sel){ return document.querySelector(sel); }
+  const btn  = qs('#mobile-menu-button');
+  const menu = qs('#mobile-menu');
+  if(!btn || !menu) return;
+  btn.setAttribute('aria-controls','mobile-menu');
+  btn.setAttribute('aria-expanded','false');
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    const isHidden = menu.classList.contains('hidden');
+    if(isHidden){ menu.classList.remove('hidden'); }
+    else        { menu.classList.add('hidden'); }
+    btn.setAttribute('aria-expanded', String(isHidden));
+  });
+  function closeMenu(){
+    if(!menu.classList.contains('hidden')){
+      menu.classList.add('hidden');
+      btn.setAttribute('aria-expanded','false');
+    }
+  }
+  // Close when clicking a nav link
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  // Close on outside click
+  document.addEventListener('click', function(ev){
+    const within = menu.contains(ev.target) || btn.contains(ev.target);
+    if(!within) closeMenu();
+  });
+  // Close on ESC
+  document.addEventListener('keydown', function(ev){
+    if(ev.key === 'Escape') closeMenu();
+  });
+  // Close when viewport becomes md and above
+  window.addEventListener('resize', function(){
+    if(window.matchMedia('(min-width: 768px)').matches){
+      closeMenu();
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
