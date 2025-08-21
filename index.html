@@ -183,7 +183,6 @@
             position: relative;
             padding-bottom: 56.25%; /* 16:9 比例 */
             height: 0;
-            background-color: #e0e7ff; /* 淺藍色背景，用於載入時的底色 */
         }
         .aspect-ratio-16-9 iframe,
         .aspect-ratio-16-9 img {
@@ -414,8 +413,8 @@
                         </div>
                     </div>
                     <div class="hidden md:block">
-                        <div id="hero-gallery-container" class="relative">
-                            <!-- 【HTML 修改】將媒體顯示區加上 aspect-ratio-16-9 class 來固定長寬比 -->
+                        <!-- 【HTML 修改】在外層容器加上 w-full h-full 確保其填滿網格空間 -->
+                        <div id="hero-gallery-container" class="relative w-full h-full">
                             <div id="hero-media-display" class="media-display-container aspect-ratio-16-9 w-full rounded-3xl shadow-2xl overflow-hidden">
                                 <!-- 內容將由 JavaScript 動態填入 -->
                             </div>
@@ -808,7 +807,6 @@
                         heroMediaDisplay.style.opacity = 0;
                     }
                     setTimeout(() => {
-                        // 【JS 修改】簡化 innerHTML 的產生方式
                         if (currentMedia.type === 'image') {
                             heroMediaDisplay.innerHTML = `
                                 <img decoding="async" loading="lazy" src="${currentMedia.src}" alt="${currentMedia.alt}" onerror="this.onerror=null;this.src='https://placehold.co/600x700/e0e7ff/1E3A8A?text=媒體載入失敗';">
@@ -1203,5 +1201,3 @@
 
 </body>
 </html>
-" in the Canvas.
-I want to change the border-radius of the youtube video to be rounded-3xl instead of rounded-
