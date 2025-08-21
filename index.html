@@ -173,10 +173,28 @@
             cursor: not-allowed;
         }
 
-        /* 【核心修改】圖片輪播的淡入淡出效果 */
-        #gallery-image, #training-gallery-image {
-            transition: opacity 0.2s ease-in-out;
+        /* 【核心修改】所有輪播內容的淡入淡出效果 */
+        #gallery-image, #training-gallery-image, .media-display-container {
+            transition: opacity 0.4s ease-in-out;
         }
+
+        /* 【新增】用於嵌入影片的響應式容器樣式 */
+        .aspect-ratio-16-9 {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 1rem; /* 圓角 */
+            background-color: #000;
+        }
+        .aspect-ratio-16-9 iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
 
         /* ---- Global heading spacing fix ---- */
         h1, h2, h3, h4 {
@@ -392,9 +410,25 @@
                           </a>
                         </div>
                     </div>
+                    <!-- 【HTML 修改】將原本的單張圖片區塊，替換成新的輪播器結構 -->
                     <div class="hidden md:block">
-                        <div class="relative w-full h-full">
-                            <img id="hero-image" loading="eager" fetchpriority="high" src="images/照片7.jpg" alt="團隊合作形象照" class="rounded-3xl shadow-2xl object-cover w-full h-full" onerror="this.onerror=null;this.src='https://placehold.co/600x700/e0e7ff/1E3A8A?text=團隊合作';">
+                        <div id="hero-gallery-container" class="relative">
+                            <!-- 媒體（圖片或影片）顯示區 -->
+                            <div id="hero-media-display" class="media-display-container w-full h-auto rounded-3xl shadow-2xl overflow-hidden">
+                                <!-- 內容將由 JavaScript 動態填入 -->
+                            </div>
+                            <!-- 上一張按鈕 -->
+                            <button id="hero-prev-btn" class="gallery-btn absolute top-1/2 -left-5 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 font-bold p-3 rounded-full shadow-md transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                            </button>
+                            <!-- 下一張按鈕 -->
+                            <button id="hero-next-btn" class="gallery-btn absolute top-1/2 -right-5 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 font-bold p-3 rounded-full shadow-md transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </button>
+                             <!-- 導覽點容器 -->
+                            <div id="hero-gallery-dots" class="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                <!-- 導覽點將由 JavaScript 動態產生 -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -710,16 +744,29 @@
             {src:'images/投資講座.png', caption:'投資講座：專家講座與市場觀點分享'}
         ];
 
+        // 【新增】Hero 區塊輪播的媒體資料
+        const heroMedia = [
+            { 
+                type: 'image', 
+                src: 'images/照片7.jpg', 
+                alt: '團隊合作形象照' 
+            },
+            { 
+                type: 'video', 
+                // 請替換成您自己的 YouTube 影片嵌入網址
+                src: 'https://www.youtube.com/embed/RUJ-11gZa_A', 
+                title: '群益期貨形象影片' 
+            }
+        ];
+
         // --- 核心功能區 ---
         // 註：當整個網頁的 HTML 結構被載入完成後，才開始執行這些互動功能。
         // ------------------------------------------------------------------
         document.addEventListener('DOMContentLoaded', function() {
             // --- 功能1: 行動版菜單開關 ---
-            // 註：這段是原有的 inline onclick script 的替代方案，更符合現代前端開發實踐
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             if (mobileMenuButton && mobileMenu) {
-                // 移除原有的 onclick 屬性，避免重複觸發
                 mobileMenuButton.removeAttribute('onclick');
                 mobileMenuButton.addEventListener('click', () => {
                     const isHidden = mobileMenu.classList.contains('hidden');
@@ -743,6 +790,69 @@
                 }
                 updateCarousel();
                 setInterval(updateCarousel, 3000);
+            }
+
+            // --- 【新增】功能: Hero 區塊的多媒體輪播 ---
+            const heroMediaDisplay = document.getElementById('hero-media-display');
+            const heroPrevBtn = document.getElementById('hero-prev-btn');
+            const heroNextBtn = document.getElementById('hero-next-btn');
+            const heroDotsContainer = document.getElementById('hero-gallery-dots');
+            if (heroMediaDisplay && heroPrevBtn && heroNextBtn && heroDotsContainer) {
+                let currentMediaIndex = 0;
+
+                function updateHeroGallery(isInitial = false) {
+                    const currentMedia = heroMedia[currentMediaIndex];
+                    if (!isInitial) {
+                        heroMediaDisplay.style.opacity = 0;
+                    }
+                    setTimeout(() => {
+                        if (currentMedia.type === 'image') {
+                            heroMediaDisplay.innerHTML = `
+                                <img decoding="async" loading="lazy" src="${currentMedia.src}" alt="${currentMedia.alt}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x700/e0e7ff/1E3A8A?text=媒體載入失敗';">
+                            `;
+                        } else if (currentMedia.type === 'video') {
+                            heroMediaDisplay.innerHTML = `
+                                <div class="aspect-ratio-16-9">
+                                    <iframe src="${currentMedia.src}" title="${currentMedia.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                            `;
+                        }
+                        heroMediaDisplay.style.opacity = 1;
+                    }, isInitial ? 0 : 400);
+
+                    heroPrevBtn.disabled = currentMediaIndex === 0;
+                    heroNextBtn.disabled = currentMediaIndex === heroMedia.length - 1;
+
+                    const dots = heroDotsContainer.querySelectorAll('.dot');
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('bg-white', index === currentMediaIndex);
+                        dot.classList.toggle('bg-gray-400', index !== currentMediaIndex);
+                    });
+                }
+
+                heroMedia.forEach((_, index) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'dot w-3 h-3 rounded-full transition-colors duration-300';
+                    dot.addEventListener('click', () => {
+                        currentMediaIndex = index;
+                        updateHeroGallery();
+                    });
+                    heroDotsContainer.appendChild(dot);
+                });
+
+                heroPrevBtn.addEventListener('click', () => {
+                    if (currentMediaIndex > 0) {
+                        currentMediaIndex--;
+                        updateHeroGallery();
+                    }
+                });
+                heroNextBtn.addEventListener('click', () => {
+                    if (currentMediaIndex < heroMedia.length - 1) {
+                        currentMediaIndex++;
+                        updateHeroGallery();
+                    }
+                });
+                updateHeroGallery(true);
             }
 
             // --- 功能3: 動態填入職缺列表 & 手風琴效果 ---
