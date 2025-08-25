@@ -1,5 +1,6 @@
 <!DOCTYPE html> <!-- 定義這份文件是 HTML5 文件 -->
-<html lang="zh-Hant" class="scroll-smooth"> <!-- 設定網頁語言為繁體中文，並啟用平滑滾動效果 -->
+<!-- [還原] 恢復使用 class="scroll-smooth"，讓瀏覽器原生處理平滑滾動 -->
+<html lang="zh-Hant" class="scroll-smooth"> <!-- 設定網頁語言為繁體中文 -->
 <head>
 <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin> <!-- 預先連接到 Tailwind CSS 的 CDN，加快載入速度 -->
 <meta name="description" content="群益期貨通路事業部人才招募：熱門職缺、福利與生活、職涯藍圖、應徵流程與常見問題，一站式了解並立即投遞。"> <!-- 網頁描述，有助於 SEO -->
@@ -32,8 +33,9 @@
         .border-brand-red { border-color: var(--brand-red); }
         .bg-light-gray { background-color: var(--light-gray-bg); }
 
+        /* [還原] 恢復 html 的 scroll-behavior，確保原生滾動生效 */
         html {
-            scroll-behavior: smooth; /* 全頁啟用平滑滾動 */
+            scroll-behavior: smooth;
         }
         
         /* --- 區塊標題樣式 --- */
@@ -614,19 +616,6 @@
         /* ============================================= */
         
         /**
-         * 初始化手機版漢堡選單功能
-         */
-        function initMobileMenu() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-            }
-        }
-
-        /**
          * 初始化 Hero 區塊的職缺輪播
          */
         function initJobCarousel() {
@@ -982,11 +971,75 @@
                 observer.observe(number);
             });
         }
+        
+        /**
+         * [修正] 整合頁面所有互動功能：手機選單開關與自動關閉
+         */
+        function initPageInteractions() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+            // 關閉手機選單的函式
+            function closeMobileMenu() {
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    if (mobileMenuButton) {
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            }
+
+            // 監聽整個文件的點擊事件 (事件委派)
+            document.addEventListener('click', function(e) {
+                const target = e.target;
+
+                // --- 處理手機選單開關 ---
+                if (mobileMenuButton && mobileMenuButton.contains(target)) {
+                    mobileMenu.classList.toggle('hidden');
+                    const isHidden = mobileMenu.classList.contains('hidden');
+                    mobileMenuButton.setAttribute('aria-expanded', String(!isHidden));
+                    return; // 處理完畢，結束
+                }
+
+                // --- 處理點擊手機選單連結後關閉選單 ---
+                const anchorInMenu = target.closest('#mobile-menu a');
+                if (anchorInMenu) {
+                    closeMobileMenu();
+                    // 讓連結的預設行為(跳轉)繼續執行
+                    return;
+                }
+
+                // --- 處理點擊外部區域關閉手機選單 ---
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    // 如果點擊的不是選單本身，也不是漢堡按鈕
+                    if (!mobileMenu.contains(target) && (!mobileMenuButton || !mobileMenuButton.contains(target))) {
+                        closeMobileMenu();
+                    }
+                }
+            });
+
+            // 監聽鍵盤 ESC 鍵來關閉手機選單
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    closeMobileMenu();
+                }
+            });
+
+            // 監聽視窗大小變化，在桌面尺寸時自動關閉手機選單
+            window.addEventListener('resize', function() {
+                if (window.matchMedia('(min-width: 768px)').matches) {
+                    closeMobileMenu();
+                }
+            });
+        }
+
 
         // --- 主要執行入口 ---
         // 當整個 HTML 文件被完整載入和解析後，才開始執行 JavaScript
         document.addEventListener('DOMContentLoaded', function() {
-            initMobileMenu(); // 初始化手機選單功能
+            // [修正] 整合所有互動功能到一個函式中
+            initPageInteractions();
+            
             initJobCarousel(); // 初始化職缺輪播
             populateAndInitJobs(); // 產生職缺列表並設定彈出視窗
             populateBenefits(); // 產生福利卡片
@@ -998,83 +1051,6 @@
             populateFaqs(); // 產生常見問題
             initScrollAnimations(); // 啟動滾動動畫
         });
-    </script>
-
-    <!-- --- 其他輔助性 JavaScript --- -->
-    <script>
-        // 強制從頂部開始，除非網址中帶有錨點 (處理 Safari/BFCache/圖片延遲載入導致的排版問題)
-        (function() {
-          var hasHash = !!location.hash;
-          try { if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; } } catch(e) {}
-
-          function jumpTop() {
-            if (hasHash) return;
-            var doc = document.documentElement, body = document.body;
-            // 暫時禁用平滑滾動以避免動畫跑位
-            var prev = doc.style.scrollBehavior;
-            doc.style.scrollBehavior = 'auto';
-            window.scrollTo(0, 0);
-            // 在下一個事件循環後恢復
-            setTimeout(function(){ doc.style.scrollBehavior = prev || ''; }, 50);
-          }
-
-          // 載入後第一秒內的多重保護
-          function guard() {
-            if (hasHash) return;
-            var tries = 0;
-            var t = setInterval(function() {
-              if (location.hash) { clearInterval(t); return; }
-              if (window.scrollY > 20) jumpTop();
-              if (++tries > 30) clearInterval(t); // 約 1.5 秒
-            }, 50);
-          }
-
-          // 盡可能提早執行
-          window.addEventListener('DOMContentLoaded', jumpTop);
-          window.addEventListener('load', function(){ jumpTop(); guard(); });
-          window.addEventListener('pageshow', function(e){ if (e.persisted) { jumpTop(); guard(); } });
-        })();
-    </script>
-    <script>
-        // 手機版選單開關 + 自動關閉 (點擊連結/外部區域/ESC鍵/調整視窗大小)
-        (function(){
-          function qs(sel){ return document.querySelector(sel); }
-          const btn  = qs('#mobile-menu-button');
-          const menu = qs('#mobile-menu');
-          if(!btn || !menu) return;
-          btn.setAttribute('aria-controls','mobile-menu');
-          btn.setAttribute('aria-expanded','false');
-          btn.addEventListener('click', function(e){
-            e.stopPropagation();
-            const isHidden = menu.classList.contains('hidden');
-            if(isHidden){ menu.classList.remove('hidden'); }
-            else        { menu.classList.add('hidden'); }
-            btn.setAttribute('aria-expanded', String(isHidden));
-          });
-          function closeMenu(){
-            if(!menu.classList.contains('hidden')){
-              menu.classList.add('hidden');
-              btn.setAttribute('aria-expanded','false');
-            }
-          }
-          // 點擊導覽連結時關閉選單
-          menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-          // 點擊選單外部區域時關閉
-          document.addEventListener('click', function(ev){
-            const within = menu.contains(ev.target) || btn.contains(ev.target);
-            if(!within) closeMenu();
-          });
-          // 按下 ESC 鍵時關閉
-          document.addEventListener('keydown', function(ev){
-            if(ev.key === 'Escape') closeMenu();
-          });
-          // 當視窗寬度變為 md (768px) 或以上時關閉
-          window.addEventListener('resize', function(){
-            if(window.matchMedia('(min-width: 768px)').matches){
-              closeMenu();
-            }
-          });
-        })();
     </script>
 
 </body>
