@@ -154,6 +154,12 @@
         #job-modal.active {
             transform: translate(-50%, -50%) scale(1); /* 顯示並放大到正常尺寸 */
         }
+        
+        /* [優化] 針對深色背景的點狀圖案 */
+        .bg-dots-soft-dark {
+          background-image: radial-gradient(rgba(255,255,255,.05) 1.6px, transparent 1.6px);
+          background-size: 14px 14px;
+        }
 
 </style>
 </head>
@@ -242,28 +248,30 @@
         <!-- ============================================= -->
         <!--               公司亮點區塊 Highlights         -->
         <!-- ============================================= -->
-        <section id="highlights" class="py-20 bg-light-gray highlights-section bg-dots-soft"> <!-- 公司亮點區塊 -->
+        <!-- [優化] 強化視覺焦點：更換背景為深藍色 -->
+        <section id="highlights" class="py-20 bg-primary highlights-section bg-dots-soft-dark"> <!-- 公司亮點區塊 -->
             <div class="container mx-auto px-6"> <!-- 內容容器 -->
                 <div class="fade-in-section text-center"> <!-- 標題區 -->
-                    <span class="metric-eyebrow">Capital Futures</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">投資人最推薦的期貨商</h2>
+                    <span class="text-blue-200 uppercase tracking-widest">Capital Futures</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">投資人最推薦的期貨商</h2>
                     <div class="w-24 h-1 bg-brand-red mx-auto mb-10"></div> <!-- 裝飾線 -->
                 </div>
                 <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto fade-in-section"> <!-- 三欄卡片佈局 -->
-                    <div class="card metric-card text-center p-8"> <!-- 亮點卡片 1 -->
-                        <p class="metric-value text-6xl font-black text-brand-red mb-2">13</p>
-                        <h3 class="metric-label text-xl font-bold text-primary mb-2">全球布局交易所會員</h3>
-                        <p class="metric-note text-secondary-gray">市場最多</p>
+                    <!-- [修正] 將卡片改回白色背景以增加對比度 -->
+                    <div class="card text-center p-8"> <!-- 亮點卡片 1 -->
+                        <p class="metric-value text-6xl font-black text-brand-red mb-2" data-goal="13">0</p>
+                        <h3 class="text-xl font-bold text-primary mb-2">全球布局交易所會員</h3>
+                        <p class="text-secondary-gray">市場最多</p>
                     </div>
-                    <div class="card metric-card text-center p-8"> <!-- 亮點卡片 2 -->
-                        <p class="metric-value text-6xl font-black text-brand-red mb-2">NO.1</p>
-                        <h3 class="metric-label text-xl font-bold text-primary mb-2">全市場期經規模</h3>
-                        <p class="metric-note text-secondary-gray">市佔第一</p>
+                    <div class="card text-center p-8"> <!-- 亮點卡片 2 -->
+                        <p class="metric-value text-6xl font-black text-brand-red mb-2" data-goal="1">0</p>
+                        <h3 class="text-xl font-bold text-primary mb-2">全市場期經規模</h3>
+                        <p class="text-secondary-gray">市佔第一</p>
                     </div>
-                    <div class="card metric-card text-center p-8"> <!-- 亮點卡片 3 -->
-                        <p class="metric-value text-6xl font-black text-brand-red mb-2">24<span class="text-4xl">Hrs</span></p>
-                        <h3 class="metric-label text-xl font-bold text-primary mb-2">法人服務LME實物交割</h3>
-                        <p class="metric-note text-secondary-gray">全年無休</p>
+                    <div class="card text-center p-8"> <!-- 亮點卡片 3 -->
+                        <p class="metric-value text-6xl font-black text-brand-red mb-2" data-goal="24">0</p>
+                        <h3 class="text-xl font-bold text-primary mb-2">法人服務LME實物交割</h3>
+                        <p class="text-secondary-gray">全年無休</p>
                     </div>
                 </div>
             </div>
@@ -272,7 +280,8 @@
         <!-- ============================================= -->
         <!--                 關於我們 About Us             -->
         <!-- ============================================= -->
-        <section id="about-us" class="py-28 bg-white"> <!-- 關於我們區塊 -->
+        <!-- [優化] 增加呼吸感：調整上下間距 py-28 -> py-32 -->
+        <section id="about-us" class="py-32 bg-white"> <!-- 關於我們區塊 -->
             <div class="container mx-auto px-6">
                 <div class="fade-in-section"> <!-- 區塊標題 -->
                     <h2 class="section-title">關於我們</h2>
@@ -284,7 +293,8 @@
                     <div class="order-2 md:order-1"> <!-- 文字內容 -->
                         <div class="bg-white p-10 rounded-2xl shadow-lg h-full">
                             <h3 class="text-3xl font-bold text-primary mb-4">公司簡介</h3>
-                            <p class="text-base leading-relaxed">群益期貨，是你看見世界、打造專業、寫下影響力的地方。我們是台灣唯一上市的期貨商(股票代號:6024)，擁有全球12大交易所會員資格。我們讓投資人可以一鍵直通全球市場，而你，就是這條通路的一部分。<br><br>在這裡，你不只是在金融圈打拼，而是參與一場真的在改變產業的轉型計畫。從DMA極速下單系統、到CME選擇權即時報價平台，再到我們的顧問陪跑服務與交易教育系統——我們不只想把商品賣出去，而是想讓更多人「懂怎麼做、做得穩、走得遠」。</p>
+                            <!-- [優化] 提升可讀性：加上 max-w-prose class -->
+                            <p class="text-base leading-relaxed max-w-prose">群益期貨，是你看見世界、打造專業、寫下影響力的地方。我們是台灣唯一上市的期貨商(股票代號:6024)，擁有全球12大交易所會員資格。我們讓投資人可以一鍵直通全球市場，而你，就是這條通路的一部分。<br><br>在這裡，你不只是在金融圈打拼，而是參與一場真的在改變產業的轉型計畫。從DMA極速下單系統、到CME選擇權即時報價平台，再到我們的顧問陪跑服務與交易教育系統——我們不只想把商品賣出去，而是想讓更多人「懂怎麼做、做得穩、走得遠」。</p>
                         </div>
                     </div>
                     <div class="order-1 md:order-2"> <!-- 圖片 -->
@@ -300,7 +310,8 @@
                     <div> <!-- 文字內容 -->
                          <div class="bg-white p-10 rounded-2xl shadow-lg h-full">
                             <h3 class="text-3xl font-bold text-primary mb-4">部門願景</h3>
-                            <p class="text-base leading-relaxed">通路事業部是群益期貨專責多通路整合與業務推進策略的核心部門。我們整合數位業務通路建置與集中化業務中心運營，同時支援全台分公司、集團異業合作對象與期貨交易輔助人。<br><br>我們的目標是：打造橫跨分公司、數位、制度與顧問商品的整合型行銷戰略部門，讓客戶、營業員與集團資源能夠無縫對接，共創效率與價值。</p>
+                            <!-- [優化] 提升可讀性：加上 max-w-prose class -->
+                            <p class="text-base leading-relaxed max-w-prose">通路事業部是群益期貨專責多通路整合與業務推進策略的核心部門。我們整合數位業務通路建置與集中化業務中心運營，同時支援全台分公司、集團異業合作對象與期貨交易輔助人。<br><br>我們的目標是：打造橫跨分公司、數位、制度與顧問商品的整合型行銷戰略部門，讓客戶、營業員與集團資源能夠無縫對接，共創效率與價值。</p>
                         </div>
                     </div>
                 </div>
@@ -387,7 +398,8 @@
         <!-- ============================================= -->
         <!--               職涯藍圖 Career Path            -->
         <!-- ============================================= -->
-        <section id="career-path" class="py-28 bg-light-gray"> <!-- 職涯藍圖區塊 -->
+        <!-- [優化] 增加呼吸感：調整上下間距 py-28 -> py-32 -->
+        <section id="career-path" class="py-32 bg-light-gray"> <!-- 職涯藍圖區塊 -->
             <div class="container mx-auto px-6">
                 <div class="fade-in-section">
                     <h2 class="section-title">你的職涯藍圖</h2>
@@ -824,7 +836,7 @@
             photos.forEach((_, index) => {
                 const dot = document.createElement('button');
                 dot.className = 'dot w-3 h-3 rounded-full transition-colors duration-300';
-                dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+                dot.setAttribute('aria-label', `前往幻燈片 ${index + 1}`);
                 dot.addEventListener('click', () => {
                     currentIndex = index;
                     updateGallery();
@@ -902,17 +914,61 @@
                 });
             }
         }
+        
+        /**
+         * [優化] 數字滾動動畫函式
+         * @param {HTMLElement} el - 要執行動畫的元素
+         */
+        function animateNumber(el) {
+            const goal = parseInt(el.dataset.goal, 10);
+            if (isNaN(goal)) return;
+
+            let current = 0;
+            const duration = 1500; // 動畫總時長
+            const increment = goal / (duration / 16); // 大約 60fps
+
+            const update = () => {
+                current += increment;
+                if (current < goal) {
+                    // 如果是 NO.1 的情況
+                    if (el.dataset.goal === "1") {
+                         el.textContent = "NO.1";
+                    } else {
+                        el.textContent = Math.ceil(current);
+                    }
+                    requestAnimationFrame(update);
+                } else {
+                    // 確保最終顯示的是目標數字
+                     if (el.dataset.goal === "1") {
+                         el.textContent = "NO.1";
+                    } else {
+                        el.textContent = goal;
+                    }
+                }
+            };
+            requestAnimationFrame(update);
+        }
+
 
         /**
-         * 初始化滾動淡入動畫
+         * 初始化滾動觸發的動畫
          */
         function initScrollAnimations() {
             const sections = document.querySelectorAll('.fade-in-section');
+            const numbers = document.querySelectorAll('.metric-value');
+
             // 建立一個 IntersectionObserver 來觀察元素是否進入可視範圍
-            const observer = new IntersectionObserver((entries) => {
+            const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) { // 如果元素進入可視範圍
-                        entry.target.classList.add('is-visible'); // 加入 is-visible class 來觸發 CSS 動畫
+                        // 觸發淡入動畫
+                        entry.target.classList.add('is-visible');
+                        
+                        // [優化] 如果是數字，觸發數字滾動動畫
+                        if (entry.target.classList.contains('metric-value')) {
+                            animateNumber(entry.target);
+                            observer.unobserve(entry.target); // 觸發後就停止觀察，避免重複執行動畫
+                        }
                     }
                 });
             }, { threshold: 0.1 }); // 當元素的可見度超過 10% 時觸發回呼函式
@@ -920,6 +976,10 @@
             // 讓觀察器開始觀察所有指定的區塊
             sections.forEach(section => {
                 observer.observe(section);
+            });
+            // 讓觀察器也觀察所有數字
+            numbers.forEach(number => {
+                observer.observe(number);
             });
         }
 
