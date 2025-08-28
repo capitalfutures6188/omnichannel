@@ -22,7 +22,7 @@
             background-color: #f8fafc; /* 設定背景顏色 */
         }
         
-        /* [修正] 將平滑滾動的 CSS 規則加回來，確保動畫效果正常 */
+        /* [還原] 將平滑滾動的 CSS 規則加回來，確保動畫效果正常 */
         html {
             scroll-behavior: smooth;
         }
@@ -42,7 +42,7 @@
         .border-brand-red { border-color: var(--brand-red); }
         .bg-light-gray { background-color: var(--light-gray-bg); }
 
-        /* [優化] 修正錨點連結被固定導覽列遮擋的問題 */
+        /* 修正錨點連結被固定導覽列遮擋的問題 */
         section[id] {
             scroll-margin-top: 80px; /* 當跳轉到某個 section 時，在頂部預留 80px 的空間，避免被 header 遮擋 */
         }
@@ -53,7 +53,7 @@
             font-weight: 700; /* 字體加粗 */
         }
         
-        /* [新增] 「回到頂部」按鈕樣式 */
+        /* 「回到頂部」按鈕樣式 */
         .back-to-top-btn {
             position: fixed; /* 固定在視窗上 */
             bottom: 1.5rem; /* 距離底部 */
@@ -82,7 +82,7 @@
             background-color: #1E40AF; /* 滑鼠懸停時加深顏色 */
         }
 
-        /* [新增] 影片延遲載入的預覽圖樣式 */
+        /* 影片延遲載入的預覽圖樣式 */
         .video-placeholder {
             position: relative; /* 相對定位，作為內部絕對定位元素的基準 */
             cursor: pointer; /* 鼠標樣式為手指 */
@@ -604,7 +604,7 @@
                     modalBody.innerHTML = `
                         <div class="space-y-6">
                             <div><h4 class="text-lg font-bold text-primary mb-2 border-b-2 border-brand-red pb-1 inline-block">✅ 任務內容</h4><ul class="list-disc list-inside space-y-2 text-gray-700 mt-3 leading-relaxed">${job.responsibilities.map(r => `<li>${r}</li>`).join('')}</ul></div>
-                            <div><h4 class="text-lg font-bold text-primary mb-2 border-b-2 border-brand-red pb-1 inline-block">� 你會獲得的成長</h4><p class="text-gray-700 mt-3 leading-relaxed">${job.growth}</p></div>
+                            <div><h4 class="text-lg font-bold text-primary mb-2 border-b-2 border-brand-red pb-1 inline-block">🚀 你會獲得的成長</h4><p class="text-gray-700 mt-3 leading-relaxed">${job.growth}</p></div>
                             <div><h4 class="text-lg font-bold text-primary mb-2 border-b-2 border-brand-red pb-1 inline-block">👥 我們在找這樣的你</h4><ul class="list-disc list-inside space-y-2 text-gray-700 mt-3 leading-relaxed">${job.qualifications.map(q => `<li>${q}</li>`).join('')}</ul></div>
                         </div>
                     `;
@@ -811,4 +811,3 @@
 
 </body>
 </html>
-�
