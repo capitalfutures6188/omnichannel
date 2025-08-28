@@ -22,6 +22,11 @@
             background-color: #f8fafc; /* 設定背景顏色 */
         }
         
+        /* [修正] 將平滑滾動的 CSS 規則加回來，確保動畫效果正常 */
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* --- 顏色變數定義 --- */
         :root {
             --brand-red: #B91C1C; /* 定義品牌紅色 */
@@ -42,151 +47,133 @@
             scroll-margin-top: 80px; /* 當跳轉到某個 section 時，在頂部預留 80px 的空間，避免被 header 遮擋 */
         }
         
-        /* [新增] 導覽列連結高亮樣式 */
+        /* 導覽列連結高亮樣式 */
         .nav-active {
             color: var(--brand-red) !important; /* 使用 !important 確保此樣式優先級最高，能覆蓋原有顏色 */
             font-weight: 700; /* 字體加粗 */
         }
+        
+        /* [新增] 「回到頂部」按鈕樣式 */
+        .back-to-top-btn {
+            position: fixed; /* 固定在視窗上 */
+            bottom: 1.5rem; /* 距離底部 */
+            right: 1.5rem; /* 距離右側 */
+            width: 3rem; /* 寬度 */
+            height: 3rem; /* 高度 */
+            border-radius: 9999px; /* 圓形 */
+            background-color: var(--primary-blue); /* 背景顏色 */
+            color: white; /* 圖示顏色 */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* 陰影 */
+            display: flex; /* 使用 flexbox 讓圖示置中 */
+            align-items: center; /* 垂直置中 */
+            justify-content: center; /* 水平置中 */
+            opacity: 0; /* 預設隱藏 */
+            transform: translateY(10px); /* 預設向下偏移 */
+            transition: all 0.3s ease; /* 過渡動畫 */
+            z-index: 50; /* 確保在大部分元素之上 */
+            visibility: hidden; /* 預設不可見，提升無障礙性 */
+        }
+        .back-to-top-btn.show {
+            opacity: 1; /* 顯示 */
+            transform: translateY(0); /* 回到原位 */
+            visibility: visible; /* 設為可見 */
+        }
+        .back-to-top-btn:hover {
+            background-color: #1E40AF; /* 滑鼠懸停時加深顏色 */
+        }
+
+        /* [新增] 影片延遲載入的預覽圖樣式 */
+        .video-placeholder {
+            position: relative; /* 相對定位，作為內部絕對定位元素的基準 */
+            cursor: pointer; /* 鼠標樣式為手指 */
+            overflow: hidden; /* 隱藏超出邊界的內容 */
+            border-radius: 1.5rem; /* 圓角 */
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); /* 陰影 */
+        }
+        .video-placeholder img {
+            width: 100%; /* 圖片寬度 100% */
+            height: 100%; /* 圖片高度 100% */
+            object-fit: cover; /* 圖片填滿容器，可能會裁切 */
+            transition: transform 0.3s ease; /* 過渡動畫 */
+        }
+        .video-placeholder:hover img {
+            transform: scale(1.05); /* 滑鼠懸停時圖片放大 */
+        }
+        .video-placeholder .play-button {
+            position: absolute; /* 絕對定位 */
+            top: 50%; /* 垂直置中 */
+            left: 50%; /* 水平置中 */
+            transform: translate(-50%, -50%); /* 精準置中 */
+            width: 6rem; /* 寬度 */
+            height: 6rem; /* 高度 */
+            background-color: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
+            border-radius: 9999px; /* 圓形 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .video-placeholder:hover .play-button {
+            transform: translate(-50%, -50%) scale(1.1); /* 滑鼠懸停時放大 */
+            background-color: white; /* 背景變為不透明 */
+        }
+        .video-placeholder .play-button svg {
+            color: var(--brand-red); /* 圖示顏色 */
+            width: 3rem; /* 圖示寬度 */
+            height: 3rem; /* 圖示高度 */
+            margin-left: 0.25rem; /* 微調圖示位置，使其看起來更置中 */
+        }
 
         /* --- 區塊標題樣式 --- */
-        .section-title {
-            color: var(--primary-blue); /* 標題顏色 */
-            font-weight: 900; /* 字體粗細 */
-            text-align: center; /* 文字置中 */
-            margin-bottom: 1rem; /* 底部外距 */
-            font-size: 2.25rem;  /* 字體大小 */
-            line-height: 1.2; /* 行高 */
-        }
-        @media (min-width: 768px) { /* 在中等螢幕尺寸以上 */
-          .section-title {
-            font-size: 3rem;   /* 調整字體大小 */
-          }
-        }
-        .section-subtitle {
-            color: var(--secondary-gray); /* 副標題顏色 */
-            text-align: center; /* 文字置中 */
-            margin-bottom: 3rem; /* 底部外距 */
-            max-width: 48rem;    /* 最大寬度 */
-            margin-left: auto; /* 水平置中 */
-            margin-right: auto; /* 水平置中 */
-            line-height: 1.75;   /* 行高 */
-        }
-        @media (min-width: 768px) { /* 在中等螢幕尺寸以上 */
-          .section-subtitle {
-            margin-bottom: 5rem; /* 調整底部外距 */
-          }
-        }
+        .section-title { color: var(--primary-blue); font-weight: 900; text-align: center; margin-bottom: 1rem; font-size: 2.25rem; line-height: 1.2; }
+        @media (min-width: 768px) { .section-title { font-size: 3rem; } }
+        .section-subtitle { color: var(--secondary-gray); text-align: center; margin-bottom: 3rem; max-width: 48rem; margin-left: auto; margin-right: auto; line-height: 1.75; }
+        @media (min-width: 768px) { .section-subtitle { margin-bottom: 5rem; } }
         
         /* --- 按鈕樣式 (Call-to-Action) --- */
-        .cta-button {
-            display: inline-block; /* 顯示方式 */
-            padding: 0.75rem 2rem; /* 內距 */
-            font-weight: 700; /* 字體粗細 */
-            border-radius: 0.5rem; /* 圓角 */
-            font-size: 1rem; /* 字體大小 */
-            transition: all 0.3s ease; /* 過渡效果 */
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* 陰影 */
-        }
-        .cta-button:focus { /* 取得焦點時的樣式 */
-          outline: 2px solid currentColor;
-          outline-offset: 2px;
-        }
-        .cta-button-primary { /* 主要按鈕樣式 */
-            background-color: var(--brand-red);
-            color: #fff;
-        }
-        .cta-button-primary:hover { /* 滑鼠懸停時的樣式 */
-          background-color: #991B1B; 
-        }
-        .cta-button-secondary { /* 次要按鈕樣式 */
-            background-color: #fff;
-            color: var(--brand-red);
-            border: 2px solid var(--brand-red);
-        }
-        .cta-button-secondary:hover { /* 滑鼠懸停時的樣式 */
-          background-color: #FEF2F2;
-        }
+        .cta-button { display: inline-block; padding: 0.75rem 2rem; font-weight: 700; border-radius: 0.5rem; font-size: 1rem; transition: all 0.3s ease; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); }
+        .cta-button:focus { outline: 2px solid currentColor; outline-offset: 2px; }
+        .cta-button-primary { background-color: var(--brand-red); color: #fff; }
+        .cta-button-primary:hover { background-color: #991B1B; }
+        .cta-button-secondary { background-color: #fff; color: var(--brand-red); border: 2px solid var(--brand-red); }
+        .cta-button-secondary:hover { background-color: #FEF2F2; }
 
         /* --- 卡片樣式 --- */
-        .card {
-            background-color: #fff; /* 背景顏色 */
-            padding: 2rem; /* 內距 */
-            border-radius: 1rem; /* 圓角 */
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* 陰影 */
-            transition: all 0.3s ease; /* 過渡效果 */
-            transform: translateY(0); /* Y軸位置 */
-        }
-        .card:hover { /* 滑鼠懸停時的樣式 */
-          box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); /* 增強陰影 */
-          transform: translateY(-0.5rem); /* 向上移動 */
-        }
+        .card { background-color: #fff; padding: 2rem; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); transition: all 0.3s ease; transform: translateY(0); }
+        .card:hover { box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); transform: translateY(-0.5rem); }
 
         /* --- 固定的 Header 樣式 --- */
-        header.sticky {
-            backdrop-filter: blur(10px); /* 背景模糊效果 */
-            -webkit-backdrop-filter: blur(10px); /* 兼容 Safari */
-            background-color: rgba(255, 255, 255, 0.85); /* 半透明背景 */
-        }
+        header.sticky { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); background-color: rgba(255, 255, 255, 0.85); }
 
         /* --- FAQ 手風琴箭頭樣式 --- */
-        .accordion-button::after {
-            content: '▼'; /* 顯示向下箭頭 */
-            float: right; /* 靠右對齊 */
-            transform: scale(0.8); /* 縮小尺寸 */
-            transition: transform 0.3s ease-in-out; /* 過渡效果 */
-            color: var(--primary-blue); /* 箭頭顏色 */
-        }
-        .accordion-button.open::after { /* 當展開時 */
-            transform: scale(0.8) rotate(180deg); /* 旋轉箭頭 */
-        }
+        .accordion-button::after { content: '▼'; float: right; transform: scale(0.8); transition: transform 0.3s ease-in-out; color: var(--primary-blue); }
+        .accordion-button.open::after { transform: scale(0.8) rotate(180deg); }
 
         /* --- 滾動淡入動畫 --- */
-        .fade-in-section {
-            opacity: 0; /* 初始透明度為 0 */
-            transform: translateY(20px); /* 初始位置向下偏移 20px */
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* 過渡效果 */
-        }
-        .fade-in-section.is-visible { /* 當可見時 */
-            opacity: 1; /* 完全顯示 */
-            transform: translateY(0); /* 回到原始位置 */
-        }
+        .fade-in-section { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
         
         /* --- 圖片輪播按鈕禁用樣式 --- */
-        .gallery-btn:disabled {
-            opacity: 0.3; /* 透明度降低 */
-            cursor: not-allowed; /* 鼠標樣式變為禁止 */
-        }
+        .gallery-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
         /* --- 職缺彈出視窗樣式 --- */
-        #job-modal-overlay.active,
-        #job-modal.active {
-            opacity: 1; /* 設為可見 */
-            pointer-events: auto; /* 啟用滑鼠事件 */
-        }
-        #job-modal.active {
-            transform: translate(-50%, -50%) scale(1); /* 顯示並放大到正常尺寸 */
-        }
+        #job-modal-overlay.active, #job-modal.active { opacity: 1; pointer-events: auto; }
+        #job-modal.active { transform: translate(-50%, -50%) scale(1); }
         
-        .bg-dots-soft-dark {
-          background-image: radial-gradient(rgba(255,255,255,.05) 1.6px, transparent 1.6px);
-          background-size: 14px 14px;
-        }
-
-</style>
+        .bg-dots-soft-dark { background-image: radial-gradient(rgba(255,255,255,.05) 1.6px, transparent 1.6px); background-size: 14px 14px; }
+    </style>
 </head>
 <body class="text-secondary-gray">
 
     <!-- ============================================= -->
     <!--                  頁首 Header                  -->
     <!-- ============================================= -->
-    <header class="bg-white/80 sticky top-0 z-40 shadow-md border-b border-gray-200 transition-all duration-300"> <!-- 固定的頁首，帶有模糊背景效果 -->
-        <nav class="container mx-auto px-6 h-20 flex justify-between items-center"> <!-- 導覽列容器 -->
-            <!-- Logo -->
-            <a href="#home" class="flex-shrink-0 flex items-center gap-3"> <!-- Logo 連結 -->
-                <img src="images/群益logo.png" alt="群益期貨 Logo" class="h-10" onerror="this.onerror=null;this.src='https://placehold.co/150x40/1E3A8A/ffffff?text=群益期貨';"> <!-- Logo 圖片，若載入失敗則顯示替代文字圖片 -->
-                <span class="text-primary font-semibold text-sm hidden md:inline border-l-2 pl-3 border-gray-300">通路事業部｜人才招募</span> <!-- Logo 文字，只在桌面版顯示 -->
+    <header class="bg-white/80 sticky top-0 z-40 shadow-md border-b border-gray-200 transition-all duration-300">
+        <nav class="container mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="#home" class="flex-shrink-0 flex items-center gap-3">
+                <img src="images/群益logo.png" alt="群益期貨 Logo" class="h-10" onerror="this.onerror=null;this.src='https://placehold.co/150x40/1E3A8A/ffffff?text=群益期貨';">
+                <span class="text-primary font-semibold text-sm hidden md:inline border-l-2 pl-3 border-gray-300">通路事業部｜人才招募</span>
             </a>
-            <!-- 桌面版導覽列 -->
             <div class="hidden md:flex items-center space-x-2">
                 <a href="#about-us" class="nav-link px-4 py-2 text-sm font-semibold text-primary rounded-lg hover:text-brand-red transition-colors">關於我們</a>
                 <a href="#openings" class="nav-link px-4 py-2 text-sm font-semibold text-primary rounded-lg hover:text-brand-red transition-colors">熱門職缺</a>
@@ -195,16 +182,14 @@
                 <a href="#apply" class="nav-link px-4 py-2 text-sm font-semibold text-primary rounded-lg hover:text-brand-red transition-colors">應徵流程</a>
                 <a href="#faq" class="nav-link px-4 py-2 text-sm font-semibold text-primary rounded-lg hover:text-brand-red transition-colors">常見問題</a>
             </div>
-            <a href="#openings" class="hidden md:inline-block ml-4 cta-button-primary px-6 py-2 text-sm">立即應徵</a> <!-- 桌面版 "立即應徵" 按鈕 -->
-            <!-- 手機版漢堡選單按鈕 -->
+            <a href="#openings" class="hidden md:inline-block ml-4 cta-button-primary px-6 py-2 text-sm">立即應徵</a>
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-primary focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
-                    <span class="sr-only">開啟選單</span> <!-- 僅供螢幕閱讀器讀取，增加無障礙性 -->
+                    <span class="sr-only">開啟選單</span>
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </nav>
-        <!-- 手機版彈出選單 -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
             <a href="#about-us" class="nav-link block text-center py-3 text-primary font-semibold hover:bg-gray-100">關於我們</a>
             <a href="#openings" class="nav-link block text-center py-3 text-primary font-semibold hover:bg-gray-100">熱門職缺</a>
@@ -216,28 +201,21 @@
         </div>
     </header>
 
-    <main> <!-- 網頁主要內容開始 -->
-        <!-- ============================================= -->
-        <!--                  主視覺區塊 Hero Section      -->
-        <!-- ============================================= -->
-        <section id="home" class="bg-white"> <!-- 主視覺區塊，ID 為 home -->
-            <div class="container mx-auto px-6 py-20 md:py-32 min-h-[calc(100vh-80px)] flex items-center"> <!-- 內容容器，高度至少為視窗高度減去頁首高度 -->
-                <div class="grid md:grid-cols-2 gap-16 items-center"> <!-- 左右兩欄佈局 -->
-                    <!-- 左側文字內容 -->
+    <main>
+        <section id="home" class="bg-white">
+            <div class="container mx-auto px-6 py-20 md:py-32 min-h-[calc(100vh-80px)] flex items-center">
+                <div class="grid md:grid-cols-2 gap-16 items-center">
                     <div class="text-center md:text-left animate-fade-in">
-                        <h1 class="text-4xl md:text-6xl font-black text-primary leading-tight">在金融賽道上<br>定義你的影響力</h1> <!-- 主要標題 -->
-                        <p class="mt-6 text-xl text-secondary-gray leading-relaxed">我們是群益期貨通路事業部。在這裡，你不只交易市場，更創造市場。</p> <!-- 副標題 -->
-                        
-                        <div class="my-8 h-12 flex items-center justify-center md:justify-start"> <!-- 職缺輪播容器 -->
-                            <div id="job-carousel" class="text-2xl font-bold text-brand-red transition-opacity duration-500"></div> <!-- 職缺輪播文字將由 JS 填入 -->
+                        <h1 class="text-4xl md:text-6xl font-black text-primary leading-tight">在金融賽道上<br>定義你的影響力</h1>
+                        <p class="mt-6 text-xl text-secondary-gray leading-relaxed">我們是群益期貨通路事業部。在這裡，你不只交易市場，更創造市場。</p>
+                        <div class="my-8 h-12 flex items-center justify-center md:justify-start">
+                            <div id="job-carousel" class="text-2xl font-bold text-brand-red transition-opacity duration-500"></div>
                         </div>
-
-                        <p class="mb-10 text-secondary-gray max-w-lg mx-auto md:mx-0 leading-relaxed">我們橫跨期貨、證券、財管與數位行銷，打造以客戶為中心的整合平台。如果你不安於現狀，渴望在金融業掀起波瀾，這裡就是你的舞台。</p> <!-- 詳細說明文字 -->
-                        
+                        <p class="mb-10 text-secondary-gray max-w-lg mx-auto md:mx-0 leading-relaxed">我們橫跨期貨、證券、財管與數位行銷，打造以客戶為中心的整合平台。如果你不安於現狀，渴望在金融業掀起波瀾，這裡就是你的舞台。</p>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 justify-center md:justify-start">
                           <a href="#openings" aria-label="查看熱門職缺" class="group w-full border-2 border-brand-red bg-white rounded-2xl px-6 py-5 shadow-sm flex items-center justify-between gap-4 font-bold text-brand-red hover:bg-red-50 hover:shadow-lg hover:-translate-y-0.5 transition focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2">
                             <span class="text-base md:text-lg">查看熱門職缺</span>
-                            <span class="arrow text-brand-red text-xl md:text-2xl transform transition-transform group-hover:translate-x-1" aria-hidden="true">→</span> <!-- aria-hidden="true" 讓螢幕閱讀器忽略這個裝飾性箭頭 -->
+                            <span class="arrow text-brand-red text-xl md:text-2xl transform transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
                           </a>
                           <a href="#about-us" aria-label="了解我們更多" class="group w-full border-2 border-brand-red bg-white rounded-2xl px-6 py-5 shadow-sm flex items-center justify-between gap-4 font-bold text-brand-red hover:bg-red-50 hover:shadow-lg hover:-translate-y-0.5 transition focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2">
                             <span class="text-base md:text-lg">了解我們更多</span>
@@ -245,11 +223,14 @@
                           </a>
                         </div>
                     </div>
-                    <!-- 右側影片 -->
+                    <!-- [修改] 影片區塊改為延遲載入的預覽圖 -->
                     <div class="hidden md:block">
-                        <div class="relative w-full h-full"> <!-- 影片容器 -->
-                            <div class="relative w-full" style="padding-top:56.25%;"> <!-- 16:9 比例容器 -->
-                                <iframe src="https://www.youtube.com/embed/yI5Mlw9Nyf4?rel=0&modestbranding=1&playsinline=1" title="YouTube video player" class="absolute inset-0 w-full h-full rounded-3xl shadow-2xl" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> <!-- 嵌入 YouTube 影片 -->
+                        <div id="video-container" class="relative w-full" style="padding-top:56.25%;">
+                            <div id="video-placeholder" class="video-placeholder absolute inset-0 w-full h-full" data-video-id="yI5Mlw9Nyf4">
+                                <img src="https://i.ytimg.com/vi/yI5Mlw9Nyf4/maxresdefault.jpg" alt="影片預覽圖" class="absolute inset-0 w-full h-full object-cover">
+                                <div class="play-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -257,28 +238,25 @@
             </div>
         </section>
 
-        <!-- ============================================= -->
-        <!--               公司亮點區塊 Highlights         -->
-        <!-- ============================================= -->
-        <section id="highlights" class="py-20 bg-primary highlights-section bg-dots-soft-dark"> <!-- 公司亮點區塊 -->
-            <div class="container mx-auto px-6"> <!-- 內容容器 -->
-                <div class="fade-in-section text-center"> <!-- 標題區 -->
+        <section id="highlights" class="py-20 bg-primary highlights-section bg-dots-soft-dark">
+            <div class="container mx-auto px-6">
+                <div class="fade-in-section text-center">
                     <span class="text-blue-200 uppercase tracking-widest">Capital Futures</span>
                     <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">投資人最推薦的期貨商</h2>
-                    <div class="w-24 h-1 bg-brand-red mx-auto mb-10"></div> <!-- 裝飾線 -->
+                    <div class="w-24 h-1 bg-brand-red mx-auto mb-10"></div>
                 </div>
-                <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto fade-in-section"> <!-- 三欄卡片佈局 -->
-                    <div class="card text-center p-8"> <!-- 亮點卡片 1 -->
+                <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto fade-in-section">
+                    <div class="card text-center p-8">
                         <p class="metric-value text-6xl font-black text-brand-red mb-2" data-goal="13">0</p>
                         <h3 class="text-xl font-bold text-primary mb-2">全球布局交易所會員</h3>
                         <p class="text-secondary-gray">市場最多</p>
                     </div>
-                    <div class="card text-center p-8"> <!-- 亮點卡片 2 -->
+                    <div class="card text-center p-8">
                         <p class="metric-value text-6xl font-black text-brand-red mb-2" data-goal="1">0</p>
                         <h3 class="text-xl font-bold text-primary mb-2">全市場期經規模</h3>
                         <p class="text-secondary-gray">市佔第一</p>
                     </div>
-                    <div class="card text-center p-8"> <!-- 亮點卡片 3 -->
+                    <div class="card text-center p-8">
                         <p class="metric-value text-6xl font-black text-brand-red mb-2" data-goal="24">0</p>
                         <h3 class="text-xl font-bold text-primary mb-2">法人服務LME實物交割</h3>
                         <p class="text-secondary-gray">全年無休</p>
@@ -287,46 +265,37 @@
             </div>
         </section>
 
-        <!-- ============================================= -->
-        <!--                 關於我們 About Us             -->
-        <!-- ============================================= -->
-        <section id="about-us" class="py-32 bg-white"> <!-- 關於我們區塊 -->
+        <section id="about-us" class="py-32 bg-white">
             <div class="container mx-auto px-6">
-                <div class="fade-in-section"> <!-- 區塊標題 -->
+                <div class="fade-in-section">
                     <h2 class="section-title">關於我們</h2>
                     <p class="section-subtitle">建立品牌信任感與願景畫面</p>
                 </div>
-                
-                <!-- 公司簡介 -->
                 <div class="grid md:grid-cols-2 gap-12 items-center mb-20 fade-in-section">
-                    <div class="order-2 md:order-1"> <!-- 文字內容 -->
+                    <div class="order-2 md:order-1">
                         <div class="bg-white p-10 rounded-2xl shadow-lg h-full">
                             <h3 class="text-3xl font-bold text-primary mb-4">公司簡介</h3>
                             <p class="text-base leading-relaxed max-w-prose">群益期貨，是你看見世界、打造專業、寫下影響力的地方。我們是台灣唯一上市的期貨商(股票代號:6024)，擁有全球12大交易所會員資格。我們讓投資人可以一鍵直通全球市場，而你，就是這條通路的一部分。<br><br>在這裡，你不只是在金融圈打拼，而是參與一場真的在改變產業的轉型計畫。從DMA極速下單系統、到CME選擇權即時報價平台，再到我們的顧問陪跑服務與交易教育系統——我們不只想把商品賣出去，而是想讓更多人「懂怎麼做、做得穩、走得遠」。</p>
                         </div>
                     </div>
-                    <div class="order-1 md:order-2"> <!-- 圖片 -->
+                    <div class="order-1 md:order-2">
                         <img decoding="async" loading="lazy" src="images/群益架構.png" alt="群益期貨公司架構圖" class="rounded-2xl shadow-lg w-full h-full object-contain bg-white p-4" onerror="this.onerror=null;this.src='https://placehold.co/600x450/1E3A8A/ffffff?text=公司架構';">
                     </div>
                 </div>
-
-                <!-- 部門願景 -->
                 <div class="grid md:grid-cols-2 gap-12 items-center fade-in-section">
-                    <div> <!-- 圖片 -->
+                    <div>
                         <img decoding="async" loading="lazy" src="images/通路事業部.jpg" alt="部門願景示意圖" class="rounded-2xl shadow-lg w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x450/ffedd5/1E3A8A?text=部門願景';">
                     </div>
-                    <div> <!-- 文字內容 -->
+                    <div>
                          <div class="bg-white p-10 rounded-2xl shadow-lg h-full">
                             <h3 class="text-3xl font-bold text-primary mb-4">部門願景</h3>
                             <p class="text-base leading-relaxed max-w-prose">通路事業部是群益期貨專責多通路整合與業務推進策略的核心部門。我們整合數位業務通路建置與集中化業務中心運營，同時支援全台分公司、集團異業合作對象與期貨交易輔助人。<br><br>我們的目標是：打造橫跨分公司、數位、制度與顧問商品的整合型行銷戰略部門，讓客戶、營業員與集團資源能夠無縫對接，共創效率與價值。</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- 四大處室 -->
                 <div class="fade-in-section">
                     <h3 class="text-3xl font-bold text-primary mt-24 mb-10 text-center"><span id="units"></span>四大處室：我們的作戰單位</h3>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8"> <!-- 四欄卡片佈局 -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div class="card seg-card text-center">
                             <div class="flex justify-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-red"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="m9 14 2 2 4-4"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
                             <h4 class="text-xl font-bold text-primary mb-2">綜合企劃處</h4>
@@ -357,24 +326,16 @@
             </div>
         </section>
 
-        <!-- ============================================= -->
-        <!--               熱門職缺 Job Openings         -->
-        <!-- ============================================= -->
         <section id="openings" class="py-28 bg-light-gray">
             <div class="container mx-auto px-6">
                 <div class="fade-in-section">
                     <h2 class="section-title">熱門職缺</h2>
                     <p class="section-subtitle">我們在找尋能一起定義未來的夥伴。點擊職缺，發現你的可能性。</p>
                 </div>
-                <div id="job-list" class="space-y-4 max-w-4xl mx-auto fade-in-section">
-                    <!-- Job items will be injected here by JavaScript -->
-                </div>
+                <div id="job-list" class="space-y-4 max-w-4xl mx-auto fade-in-section"></div>
             </div>
         </section>
 
-        <!-- ============================================= -->
-        <!--           福利與生活 Benefits & Team Life     -->
-        <!-- ============================================= -->
         <section id="benefits-life" class="py-28 bg-white">
             <div class="container mx-auto px-6">
                 <div class="fade-in-section">
@@ -382,11 +343,9 @@
                     <p class="section-subtitle">我們照顧你的身心，投資你的成長，更相信最好的工作風氣來自於互信的夥伴關係。</p>
                 </div>
                 <div class="grid lg:grid-cols-2 gap-12 items-center fade-in-section">
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <!-- Benefit cards will be injected here -->
-                    </div>
+                    <div class="grid md:grid-cols-2 gap-8"></div>
                     <div id="team" class="sr-only" aria-hidden="true"></div>
-                        <div id="gallery-container" data-anchor="team" class="relative max-w-xl mx-auto">
+                    <div id="gallery-container" data-anchor="team" class="relative max-w-xl mx-auto">
                         <img decoding="async" loading="lazy" id="gallery-image" class="w-full h-auto rounded-lg shadow-2xl" src="" alt="團隊生活照片">
                         <button id="prev-btn" class="gallery-btn absolute top-1/2 -left-4 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 font-bold p-3 rounded-full shadow-md transition-colors duration-300" aria-label="上一張照片">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
@@ -394,24 +353,18 @@
                         <button id="next-btn" class="gallery-btn absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 font-bold p-3 rounded-full shadow-md transition-colors duration-300" aria-label="下一張照片">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </button>
-                        <div id="gallery-dots" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                            <!-- Dots will be generated by JS -->
-                        </div>
+                        <div id="gallery-dots" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ============================================= -->
-        <!--               職涯藍圖 Career Path            -->
-        <!-- ============================================= -->
         <section id="career-path" class="py-32 bg-light-gray">
             <div class="container mx-auto px-6">
                 <div class="fade-in-section">
                     <h2 class="section-title">你的職涯藍圖</h2>
                     <p class="section-subtitle">我們提供不只一份工作，而是一個能讓你持續成長、跨界發展的事業舞台。</p>
                 </div>
-                
                 <div class="fade-in-section mb-20">
                     <h3 class="text-3xl font-bold text-primary mb-12 text-center">清晰的成長路徑</h3>
                     <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-2">
@@ -431,7 +384,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="fade-in-section">
                     <h3 class="text-3xl font-bold text-primary mb-12 text-center">全方位的培訓支援</h3>
                     <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
@@ -460,9 +412,7 @@
                             <button id="training-next-btn" class="gallery-btn absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 font-bold p-3 rounded-full shadow-md transition-colors duration-300" aria-label="下一張培訓照片">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             </button>
-                            <div id="training-gallery-dots" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                                <!-- Dots will be generated by JS -->
-                            </div>
+                            <div id="training-gallery-dots" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2"></div>
                             <p id="training-caption" class="training-caption"></p>
                         </div>
                     </div>
@@ -470,9 +420,6 @@
             </div>
         </section>
 
-        <!-- ============================================= -->
-        <!--             應徵流程 Application Process      -->
-        <!-- ============================================= -->
         <section id="apply" class="py-28 bg-white">
              <div class="container mx-auto px-6">
                 <div class="fade-in-section">
@@ -481,11 +428,8 @@
                 </div>
                 <div class="relative max-w-5xl mx-auto fade-in-section">
                     <div class="hidden md:block absolute top-8 left-0 w-full h-1 bg-gray-300"></div>
-                    <div id="apply-steps-container" class="relative grid grid-cols-1 md:grid-cols-5 gap-8 text-center">
-                        <!-- Steps will be injected here -->
-                    </div>
+                    <div id="apply-steps-container" class="relative grid grid-cols-1 md:grid-cols-5 gap-8 text-center"></div>
                 </div>
-
                 <div class="mt-20 grid md:grid-cols-3 gap-8 text-center max-w-5xl mx-auto fade-in-section">
                     <div class="card p-8">
                         <h3 class="text-xl font-bold mb-4 text-primary">前往 104 網站應徵</h3>
@@ -503,45 +447,32 @@
              </div>
         </section>
 
-        <!-- ============================================= -->
-        <!--                 常見問題 FAQ                  -->
-        <!-- ============================================= -->
         <section id="faq" class="py-28 bg-light-gray">
             <div class="container mx-auto px-6">
                 <div class="fade-in-section">
                     <h2 class="section-title">常見問題</h2>
                     <p class="section-subtitle">預先回答您的疑問，讓您更放心。</p>
                 </div>
-                <div id="faq-container" class="max-w-3xl mx-auto space-y-4 fade-in-section">
-                    <!-- FAQ items will be injected here -->
-                </div>
+                <div id="faq-container" class="max-w-3xl mx-auto space-y-4 fade-in-section"></div>
             </div>
         </section>
         
-        <!-- ============================================= -->
-        <!--                  頁尾 Footer                  -->
-        <!-- ============================================= -->
         <footer class="bg-gray-800 text-white pt-16 pb-12">
             <div class="container mx-auto px-6 text-center">
                 <h3 class="text-2xl font-bold mb-4">有問題想先聊聊？</h3>
                 <p class="mb-2">招募窗口：人力資源部 林小姐</p>
                 <p class="mb-6">Email: <a href="mailto:hr.channel@capital.com.tw" class="text-red-400 hover:underline">hr.channel@capital.com.tw</a></p>
-                
                 <div class="flex justify-center items-center space-x-2 text-gray-300 mb-8">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
                     <a href="https://www.google.com/maps/search/?api=1&query=台北市松山區民生東路三段156號7F之6" target="_blank" class="hover:underline">
                         台北市松山區民生東路三段156號7F之6
                     </a>
                 </div>
-
                 <p class="text-sm text-gray-400">&copy; 2024 群益期貨股份有限公司版權所有</p>
             </div>
         </footer>
     </main>
     
-    <!-- ============================================= -->
-    <!--              職缺詳情彈出視窗 Modal             -->
-    <!-- ============================================= -->
     <div id="job-modal-overlay" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
     <div id="job-modal" class="fixed top-1/2 left-1/2 w-[92vw] max-w-3xl max-h-[90vh] bg-white rounded-2xl shadow-2xl z-50 opacity-0 scale-95 pointer-events-none transition-all duration-300 flex flex-col -translate-x-1/2 -translate-y-1/2">
         <div class="p-6 border-b flex justify-between items-start">
@@ -553,13 +484,16 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
         </div>
-        <div id="modal-body" class="p-6 md:p-8 overflow-y-auto flex-grow">
-            <!-- Job details will be injected here -->
-        </div>
+        <div id="modal-body" class="p-6 md:p-8 overflow-y-auto flex-grow"></div>
         <div class="p-6 bg-slate-50 border-t rounded-b-2xl text-center">
             <a href="#apply" id="modal-apply-btn" class="cta-button-primary inline-block">我要應徵這個職位</a>
         </div>
     </div>
+
+    <!-- [新增] 「回到頂部」按鈕的 HTML 結構 -->
+    <button id="back-to-top-btn" class="back-to-top-btn" aria-label="回到頁面頂部">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
 
     <!-- ============================================= -->
     <!--                  JavaScript 區塊              -->
@@ -610,45 +544,40 @@
         
         document.addEventListener('DOMContentLoaded', function() {
             
-            // 初始化 Hero 區塊的職缺輪播
             function initJobCarousel() {
                 const jobCarouselEl = document.getElementById('job-carousel');
-                if (!jobCarouselEl) return; // 如果找不到元素，就直接結束函式
+                if (!jobCarouselEl) return;
                 let carouselIndex = 0;
                 const updateCarousel = () => {
-                    jobCarouselEl.classList.add('opacity-0'); // 先讓文字透明
+                    jobCarouselEl.classList.add('opacity-0');
                     setTimeout(() => {
-                        jobCarouselEl.textContent = jobCarouselItems[carouselIndex]; // 更新文字內容
-                        jobCarouselEl.classList.remove('opacity-0'); // 移除透明，淡入顯示新文字
-                        carouselIndex = (carouselIndex + 1) % jobCarouselItems.length; // 計算下一個要顯示的項目索引
-                    }, 500); // 延遲 0.5 秒，等待淡出效果完成
+                        jobCarouselEl.textContent = jobCarouselItems[carouselIndex];
+                        jobCarouselEl.classList.remove('opacity-0');
+                        carouselIndex = (carouselIndex + 1) % jobCarouselItems.length;
+                    }, 500);
                 };
-                updateCarousel(); // 立即執行一次
-                setInterval(updateCarousel, 3000); // 每 3 秒執行一次
+                updateCarousel();
+                setInterval(updateCarousel, 3000);
             }
 
-            // 產生職缺列表並初始化彈出視窗功能
             function populateAndInitJobs() {
-                // 獲取所有需要的 DOM 元素
                 const jobListContainer = document.getElementById('job-list');
                 const modalOverlay = document.getElementById('job-modal-overlay');
                 const modal = document.getElementById('job-modal');
-                if (!jobListContainer || !modal) return; // 如果重要元素不存在，就直接返回
+                if (!jobListContainer || !modal) return;
                 const modalTitle = document.getElementById('modal-title');
                 const modalDepartment = document.getElementById('modal-department');
                 const modalBody = document.getElementById('modal-body');
                 const modalCloseBtn = document.getElementById('modal-close-btn');
                 const modalApplyBtn = document.getElementById('modal-apply-btn');
 
-                // 遍歷 jobs 陣列，為每個職缺動態產生 HTML 卡片
                 jobs.forEach(job => {
-                    const wrapper = document.createElement('div'); // 建立一個 div 元素
+                    const wrapper = document.createElement('div');
                     wrapper.className = 'job-card-item bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer group';
-                    wrapper.dataset.jobId = job.id; // 將職缺 ID 存儲在 data 屬性中
-                    wrapper.setAttribute('role', 'button'); // 增加無障礙屬性，表示這是一個可點擊的按鈕
-                    wrapper.setAttribute('tabindex', '0'); // 讓這個元素可以用 Tab 鍵選取到
-                    wrapper.setAttribute('aria-label', `查看 ${job.title} 職缺詳情`); // 提供給螢幕閱讀器的說明
-                    // 使用模板字符串填入職缺卡片的 HTML 內容
+                    wrapper.dataset.jobId = job.id;
+                    wrapper.setAttribute('role', 'button');
+                    wrapper.setAttribute('tabindex', '0');
+                    wrapper.setAttribute('aria-label', `查看 ${job.title} 職缺詳情`);
                     wrapper.innerHTML = `
                         <div class="p-6">
                             <div class="flex justify-between items-start gap-4">
@@ -664,14 +593,12 @@
                             </div>
                         </div>
                     `;
-                    jobListContainer.appendChild(wrapper); // 將產生的卡片加入到列表容器中
+                    jobListContainer.appendChild(wrapper);
                 });
 
-                // 定義開啟彈出視窗的函式
                 const openModal = (jobId) => {
-                    const job = jobs.find(j => j.id == jobId); // 根據傳入的 ID 尋找對應的職缺資料
-                    if (!job) return; // 如果找不到職缺，就結束函式
-                    // 將職缺資料填入彈出視窗的對應位置
+                    const job = jobs.find(j => j.id == jobId);
+                    if (!job) return;
                     modalTitle.textContent = job.title;
                     modalDepartment.textContent = job.department;
                     modalBody.innerHTML = `
@@ -681,20 +608,17 @@
                             <div><h4 class="text-lg font-bold text-primary mb-2 border-b-2 border-brand-red pb-1 inline-block">👥 我們在找這樣的你</h4><ul class="list-disc list-inside space-y-2 text-gray-700 mt-3 leading-relaxed">${job.qualifications.map(q => `<li>${q}</li>`).join('')}</ul></div>
                         </div>
                     `;
-                    // 顯示彈出視窗和背景遮罩
                     modalOverlay.classList.add('active');
                     modal.classList.add('active');
-                    document.body.style.overflow = 'hidden'; // 禁止背景頁面滾動
+                    document.body.style.overflow = 'hidden';
                 };
 
-                // 定義關閉彈出視窗的函式
                 const closeModal = () => {
                     modalOverlay.classList.remove('active');
                     modal.classList.remove('active');
-                    document.body.style.overflow = ''; // 恢復背景頁面滾動
+                    document.body.style.overflow = '';
                 };
 
-                // 綁定事件監聽器
                 jobListContainer.addEventListener('click', e => { e.target.closest('.job-card-item') && openModal(e.target.closest('.job-card-item').dataset.jobId); });
                 jobListContainer.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { const card = e.target.closest('.job-card-item'); if (card) { e.preventDefault(); openModal(card.dataset.jobId); } } });
                 modalCloseBtn.addEventListener('click', closeModal);
@@ -703,13 +627,11 @@
                 document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
             }
 
-            // 產生福利與生活區塊的卡片
             function populateBenefits() {
                 const container = document.querySelector('#benefits-life .grid .grid');
                 if (container) container.innerHTML = benefits.map(b => `<div class="card"><div class="flex justify-center mb-4">${b.icon}</div><h4 class="text-xl font-bold text-primary mb-5">${b.title}</h4><p class="text-sm leading-loose">${b.description}</p></div>`).join('');
             }
 
-            // 初始化圖片輪播功能
             function initGallery(containerId, imageId, prevBtnId, nextBtnId, dotsId, photos, captionId) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
@@ -732,13 +654,11 @@
                 updateGallery();
             }
 
-            // 產生應徵流程步驟
             function populateApplySteps() {
                 const container = document.getElementById('apply-steps-container');
                 if (container) container.innerHTML = applySteps.map(s => `<div class="flex flex-col items-center relative"><div class="w-16 h-16 rounded-full ${s.isFinal ? 'bg-brand-red' : 'bg-primary'} text-white flex items-center justify-center text-2xl font-bold border-4 border-light-gray shadow-md z-10">${s.number}</div><h4 class="font-bold mt-4 text-primary">${s.title}</h4><p class="text-sm text-secondary-gray leading-relaxed mt-2">${s.description}</p></div>`).join('');
             }
 
-            // 產生常見問題並初始化手風琴效果
             function populateFaqs() {
                 const container = document.getElementById('faq-container');
                 if (!container) return;
@@ -746,7 +666,6 @@
                 container.addEventListener('click', e => { const btn = e.target.closest('.accordion-button'); if (btn) { btn.classList.toggle('open'); btn.nextElementSibling.classList.toggle('hidden'); } });
             }
             
-            // 數字滾動動畫函式
             function animateNumber(el) {
                 const goal = parseInt(el.dataset.goal, 10);
                 if (isNaN(goal)) return;
@@ -764,7 +683,6 @@
                 requestAnimationFrame(update);
             }
 
-            // 初始化滾動淡入動畫
             function initScrollAnimations() {
                 const sections = document.querySelectorAll('.fade-in-section, .metric-value');
                 const observer = new IntersectionObserver((entries, obs) => {
@@ -772,14 +690,13 @@
                         if (entry.isIntersecting) {
                             entry.target.classList.add('is-visible');
                             if (entry.target.classList.contains('metric-value')) animateNumber(entry.target);
-                            obs.unobserve(entry.target); // 動畫只觸發一次
+                            obs.unobserve(entry.target);
                         }
                     });
                 }, { threshold: 0.1 });
                 sections.forEach(s => observer.observe(s));
             }
             
-            // 處理頁面互動，主要是手機選單的開關與自動關閉
             function initPageInteractions() {
                 const menu = document.getElementById('mobile-menu'), btn = document.getElementById('mobile-menu-button');
                 if (!menu || !btn) return;
@@ -788,67 +705,88 @@
                 menu.addEventListener('click', e => { if (e.target.closest('a')) closeMenu(); });
             }
 
-            /**
-             * [最終修正] 初始化導覽列滾動高亮功能
-             * - 改用 scroll event listener 搭配 throttling，確保穩定性與效能。
-             * - 精準判斷使用者最後滾動經過的區塊並給予高亮。
-             */
             function initNavHighlightOnScroll() {
-                const sections = document.querySelectorAll('main section[id]'); // 獲取所有帶有 id 的 section
-                const navLinks = document.querySelectorAll('header a.nav-link'); // 獲取所有導覽連結
+                const sections = document.querySelectorAll('main section[id]');
+                const navLinks = document.querySelectorAll('header a.nav-link');
                 const header = document.querySelector('header');
-                const headerHeight = header ? header.offsetHeight : 80; // 獲取 header 的高度，若失敗則預設 80px
-                let scrollTimeout; // 用於存放 setTimeout 的變數
-
+                const headerHeight = header ? header.offsetHeight : 80;
+                let scrollTimeout;
                 const highlightNav = () => {
-                    let currentSectionId = ''; // 用來儲存當前所在區塊的 ID
-
-                    // 從上到下檢查每個 section 的位置
+                    let currentSectionId = '';
                     sections.forEach(section => {
-                        const sectionTop = section.offsetTop - headerHeight - 20; // 計算 section 頂部位置，並減去 header 高度和一些緩衝值
-                        // 如果當前滾動的位置超過了 section 的頂部，就將 currentSectionId 設為這個 section 的 ID
+                        const sectionTop = section.offsetTop - headerHeight - 20;
                         if (window.scrollY >= sectionTop) {
                             currentSectionId = section.getAttribute('id');
                         }
                     });
-                    
-                    // 特殊情況：如果滾動到頁面最底部，強制高亮最後一個 section 對應的連結
-                    // (window.innerHeight + window.scrollY) 是當前視窗的底部位置
-                    // document.body.offsetHeight 是整個頁面的高度
-                    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5) { // 5px 緩衝
-                        const lastSection = sections[sections.length - 1]; // 獲取最後一個 section
+                    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5) {
+                        const lastSection = sections[sections.length - 1];
                         if (lastSection) {
-                            currentSectionId = lastSection.getAttribute('id'); // 將 ID 設為最後一個 section 的 ID
+                            currentSectionId = lastSection.getAttribute('id');
                         }
                     }
-
-                    // 更新導覽列連結的樣式
                     navLinks.forEach(link => {
-                        const linkHref = link.getAttribute('href'); // 獲取連結的 href 屬性 (例如 "#about-us")
-                        // 如果連結的 href 等於 `#` 加上當前區塊的 ID
+                        const linkHref = link.getAttribute('href');
                         if (linkHref === `#${currentSectionId}`) {
-                            link.classList.add('nav-active'); // 就加上高亮樣式
+                            link.classList.add('nav-active');
                         } else {
-                            link.classList.remove('nav-active'); // 否則移除高亮樣式
+                            link.classList.remove('nav-active');
                         }
                     });
                 };
-
-                // 使用 throttling (節流) 來優化 scroll 事件的觸發頻率，避免效能問題
                 window.addEventListener('scroll', () => {
-                    // 如果已經有一個計時器在等待執行，就先清除它
-                    if (scrollTimeout) {
-                        clearTimeout(scrollTimeout);
-                    }
-                    // 設定一個新的計時器，在 50 毫秒後執行 highlightNav 函式
-                    // 這能確保函式不會在滾動時被過於頻繁地呼叫
+                    if (scrollTimeout) clearTimeout(scrollTimeout);
                     scrollTimeout = setTimeout(highlightNav, 50);
                 });
-
-                // 頁面載入時也執行一次，確保初始狀態正確
                 highlightNav();
             }
 
+            // [新增] 初始化「回到頂部」按鈕
+            function initBackToTopButton() {
+                const btn = document.getElementById('back-to-top-btn');
+                if (!btn) return;
+
+                // 監聽滾動事件
+                window.addEventListener('scroll', () => {
+                    // 如果滾動超過一個螢幕的高度
+                    if (window.scrollY > window.innerHeight) {
+                        btn.classList.add('show'); // 顯示按鈕
+                    } else {
+                        btn.classList.remove('show'); // 隱藏按鈕
+                    }
+                });
+
+                // 監聽按鈕點擊事件
+                btn.addEventListener('click', () => {
+                    // 平滑滾動到頁面頂部
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // [新增] 初始化影片延遲載入功能
+            function initLazyLoadVideo() {
+                const placeholder = document.getElementById('video-placeholder');
+                const container = document.getElementById('video-container');
+                if (!placeholder || !container) return;
+
+                placeholder.addEventListener('click', () => {
+                    const videoId = placeholder.dataset.videoId;
+                    if (!videoId) return;
+
+                    // 建立 iframe 元素
+                    const iframe = document.createElement('iframe');
+                    iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1&autoplay=1`;
+                    iframe.title = "YouTube video player";
+                    iframe.className = "absolute inset-0 w-full h-full rounded-3xl shadow-2xl";
+                    iframe.frameBorder = "0";
+                    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+                    iframe.allowFullscreen = true;
+
+                    // 將預覽圖替換為 iframe
+                    container.innerHTML = ''; // 清空容器
+                    container.appendChild(iframe); // 加入 iframe
+                });
+            }
 
             // --- 依序執行所有初始化函式 ---
             initPageInteractions();
@@ -860,7 +798,9 @@
             populateApplySteps();
             populateFaqs();
             initScrollAnimations();
-            initNavHighlightOnScroll(); // 啟用導覽列高亮功能
+            initNavHighlightOnScroll();
+            initBackToTopButton(); // 啟用「回到頂部」按鈕
+            initLazyLoadVideo(); // 啟用影片延遲載入
         });
     </script>
 
